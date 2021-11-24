@@ -4,42 +4,42 @@ import axios from "axios";
 
 export default class Cadastro extends React.Component {
   state = {
-    titulo: '',
-    descricao: '',
-    preco: '',
-    pagamento: [],
-    prazo: ''
+    title: '',
+    description: '',
+    price: '',
+    paymentMethods: [],
+    dueDate: ''
   }
-
+  
   mudarTitulo = (event) => {
-    this.setState({ titulo: event.target.value })
+    this.setState({ title: event.target.value })
   }
   mudarDescricao = (event) => {
-    this.setState({ descricao: event.target.value })
+    this.setState({ description: event.target.value })
   }
   mudarPreco = (event) => {
-    this.setState({ preco: event.target.value })
+    this.setState({ price: event.target.value })
   }
   mudarPagamento = (event) => {
     let opcoes = Array.from(event.target.selectedOptions, option => option.value)
-    this.setState({pagamento: opcoes})
+    this.setState({paymentMethods: opcoes})
   }
   mudarPrazo = (event) => {
-    this.setState({ prazo: event.target.value })
+    this.setState({ dueDate: event.target.value })
   }
 
   criarServico = async () => {
     const body = {
-      title: this.state.titulo,
-      description: this.state.descricao,
-      price: Number(this.state.preco),
-      paymentMethods: this.state.pagamento,
-      dueDate: this.state.prazo
+      title: this.state.title,
+      description: this.state.description,
+      price: Number(this.state.price),
+      paymentMethods: this.state.paymentMethods,
+      dueDate: this.state.dueDate
     };
     try {
       const res = await axios.post(`${baseURL}/jobs`, body, headers)
       alert("Cadastro efetuado.")
-      this.setState({ titulo:"", descricao:"", preco:"", pagamento:[], prazo:""})
+      this.setState({ title:"", description:"", price:"", paymentMethods:[], dueDate:""})
       console.log(res.data.jobs)
     } catch (err) {
       alert(err.response)
@@ -57,20 +57,20 @@ export default class Cadastro extends React.Component {
         <div>
           <input 
             placeholder={"Título"}
-            value={this.state.titulo}
+            value={this.state.title}
             onChange={this.mudarTitulo}
           />
           <input 
             placeholder={"Descrição"}
-            value={this.state.descricao}
+            value={this.state.description}
             onChange={this.mudarDescricao}
           />
           <input 
             placeholder={"Preço"}
-            value={this.state.preco}
+            value={this.state.price}
             onChange={this.mudarPreco}
           />
-          <select value={this.state.pagamento} onChange={this.mudarPagamento}>
+          <select value={this.state.paymentMethods} onChange={this.mudarPagamento}>
                 <option>Selecionar pagamento</option>
                 <option>Cartão de Débito</option>
                 <option>Cartão de Crédito</option>
@@ -81,7 +81,7 @@ export default class Cadastro extends React.Component {
           <input 
             type="date"
             placeholder={"Prazo"}
-            value={this.state.prazo}
+            value={this.state.dueDate}
             onChange={this.mudarPrazo}
           />
           <button onClick={() => this.criarServico()}>Cadastrar</button>
