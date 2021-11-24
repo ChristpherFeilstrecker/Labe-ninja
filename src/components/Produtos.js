@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Carrinho from './Carrinho'
 export default class Produtos extends React.Component {
   state = {
     jobs:  [],
@@ -7,7 +7,23 @@ export default class Produtos extends React.Component {
     precoMin: "",
     precoMax: "",
     sequencia: 1,
-    parametro: "title"
+    parametro: "title",
+    page: false
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("carrinho", JSON.stringify(this.props.carrinho));
+  }
+
+  componentDidMount() {
+    const modificarCarrinho = localStorage.getItem("carrinho");
+    if (modificarCarrinho) {
+      this.setState({ carrinho: JSON.parse(modificarCarrinho) });
+    }
+  }
+
+  voltarPagina = () => {
+    this.setState({page: !this.state.page})
   }
 
   onChangeSequencia = (e) => {
@@ -64,12 +80,17 @@ export default class Produtos extends React.Component {
             <p>R$: {item.price}</p>
             <p>{item.dueDate}</p>
             <p>Métodos de pagamento: {item.paymentMethods}</p>
-            <button>CONTRATAR!</button>
+            <button onClick={() => this.props.adicionarProduto(item)}>CONTRATAR!</button>
           </div>
         )
     })
 
     return (
+  <div>
+    {this.state.page ? (
+      <Carrinho 
+      voltar={this.voltarPagina}/>
+    ) : (
       <div>
         Produtos
         <button onClick={this.props.irParaCarrinho}> Carrinho </button>
@@ -121,6 +142,9 @@ export default class Produtos extends React.Component {
         </div>
 
       </div>
+    )
+  }
+  </div> 
     );
   }
 }
