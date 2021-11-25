@@ -184,7 +184,14 @@ export default class App extends React.Component {
     return (
       <div>
         <div>
-          <Header />
+          <Header 
+            pagina={this.state.paginaAtual}
+            home={this.irParaHome}
+            telaVazia={this.irParaTelaVazia}
+            produtos={this.irParaProdutos}
+            cadastro={this.irParaCadastro}
+            carrinho={this.irParaCarrinho}
+          />
         </div>
         <div>
         {this.trocaPagina()}

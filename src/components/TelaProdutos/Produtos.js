@@ -84,10 +84,6 @@ export default class Produtos extends React.Component {
     return (
   <div>
     <div>
-        Produtos
-        <button onClick={this.props.irParaCarrinho}> Carrinho </button>
-        <button onClick={this.props.irParaHome}> Home </button>
-
         <h2>Pesquisa</h2>
         <input
          placeholder="Pesquisa"
