@@ -36,16 +36,25 @@ export default class Carrinho extends React.Component {
 
     return (
       <ConjuntoDoCarrinho>
-        <button onClick={this.props.irParaProdutos}> Serviços </button>
-        <button onClick={this.props.irParaHome}> Home </button>
-
         <h2>Carrinho</h2>
-        <div>
+        {this.props.itensDoCarrinho.length === 0 && (
+          <div>
+            <h4>Você ainda não selecionou um serviço<span role="img" aria-label="Emoji triste">😕</span></h4>
+            <button onClick={this.props.irParaProdutos}> Selecionar serviços </button>
+          </div>
+          
+        )}
+        {this.props.itensDoCarrinho.length > 0 && (
+          <div>
+          <div>
           {itens}
         </div>
         <p>Valor Total: R$ {this.valorTotalCarrinho(this.props.itensDoCarrinho)}</p>
         <button onClick={this.props.limparCarrinho}>Limpar carrinho</button>
         <button onClick={this.mensagemFinalizarCarrinho}>Finalizar</button>
+        <button onClick={this.props.irParaProdutos}> Selecionar mais serviços </button>
+          </div>
+        )}
       </ConjuntoDoCarrinho>
     );
   }
