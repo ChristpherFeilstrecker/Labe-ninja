@@ -1,6 +1,7 @@
 import React from 'react';
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
+
 export default class Produtos extends React.Component {
   state = {
     jobs:  [],
@@ -81,6 +82,7 @@ export default class Produtos extends React.Component {
         )
     })
 
+    
     return (
   <div>
     <div>
@@ -126,8 +128,13 @@ export default class Produtos extends React.Component {
         </select>
 
         <div>
-        {servicos} 
-        {this.state.jobs.length > 0 ? (<ul>{servicos}</ul>) : (<p>Carregando...</p>)}
+          {this.state.jobs.length > 0 ? 
+          (
+            <div>
+              {servicos}
+            </div>
+          ) : <h1>Carregando...</h1>
+        }
         </div>
 
       </div>

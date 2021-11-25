@@ -1,6 +1,10 @@
 import React from "react"
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
+import {
+  Form,
+  Select,
+} from 'antd';
 
 export default class Cadastro extends React.Component {
   state = {
@@ -10,7 +14,20 @@ export default class Cadastro extends React.Component {
     pagamento: [],
     prazo: ''
   }
+
+  let convertDate = new Date(this.state.prazo);
+    const formatedDate = convertDate.toLocaleDateString("pt-BR", {
+      timeZone: "UTC",
+    });
+
   
+  //
+
+
+    
+  
+   // 
+    
   mudarTitulo = (event) => {
     this.setState({ titulo: event.target.value })
   }
@@ -22,7 +39,7 @@ export default class Cadastro extends React.Component {
   }
   mudarPagamento = (event) => {
     const formaDePagamento = [...this.state.pagamento]
-    formaDePagamento.push(event.target.value)
+     formaDePagamento.push(event.target.value)
     this.setState({pagamento: formaDePagamento})
   }
   mudarPrazo = (event) => {
@@ -35,8 +52,8 @@ export default class Cadastro extends React.Component {
       description: this.state.descricao,
       price: Number(this.state.preco),
       paymentMethods: this.state.pagamento,
-      dueDate: this.state.prazo
-    };
+      dueDate: this.state.prazo //{formatedDate}
+      };
     try {
       const res = await axios.post(`${BASE_URL}/jobs`, body, headers)
       alert("Cadastro efetuado.")
@@ -66,29 +83,16 @@ export default class Cadastro extends React.Component {
             value={this.state.preco}
             onChange={this.mudarPreco}
           />
-          <div>
-            <h4>Forma de pagamento</h4>
 
-                  <input type="checkbox" name="debito" value={this.state.pagamento} onChange={this.mudarPagamento} />
-                  <label for="debito">Cartão de Débito</label>
-                  <input type="checkbox" name="credito" value={this.state.pagamento} onChange={this.mudarPagamento} />
-                  <label for="credito">Cartão de Crédito</label>
-                  <input type="checkbox" name="paypal" value={this.state.pagamento} onChange={this.mudarPagamento}/>
-                  <label for="paypal">PayPal</label>
-                  <input type="checkbox" name="boleto" value={this.state.pagamento} onChange={this.mudarPagamento}/>
-                  <label for="boleto">Boleto</label>
-                  <input type="checkbox" name="pix" value={this.state.pagamento} onChange={this.mudarPagamento}/>
-                  <label for="pix">Pix</label>
-    
-          </div>
-          <select value={this.state.pagamento} onChange={this.mudarPagamento}>
-                <option>Selecionar pagamento</option>
-                <option>Cartão de Débito</option>
-                <option>Cartão de Crédito</option>
-                <option>PayPal</option>
-                <option>Boleto</option>
-                <option>Pix</option>
-              </select>
+          <Form.Item label="Formas de Pagamento">
+          <Select mode="multiple">
+            <Select.Option value="Cartão">Cartão</Select.Option>
+            <Select.Option value="dinheiro">Dinheiro</Select.Option>
+            <Select.Option value="PayPal">PayPal</Select.Option>
+            <Select.Option value="Pix">Pix</Select.Option>
+          </Select>
+          </Form.Item>
+
           <input 
             type="date"
             placeholder={"Prazo"}
