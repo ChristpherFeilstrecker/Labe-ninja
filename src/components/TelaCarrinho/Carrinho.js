@@ -10,7 +10,7 @@ export default class Carrinho extends React.Component {
   valorTotalCarrinho = (listaServicos) => {
     let valorTotal = 0;
     for (let servico of listaServicos) {
-      valorTotal += Number(servico.price * servico.quantidade);
+      valorTotal += Number(servico.price);
     }
     return valorTotal.toFixed(2).replace(".", ",");
   };

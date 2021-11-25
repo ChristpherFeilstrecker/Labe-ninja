@@ -6,6 +6,7 @@ import Produtos from "./components/TelaProdutos/Produtos";
 import Cadastro from "./components/TelaCadastro/Cadastro";
 import Header from './components/shared/Header/Header'
 import Footer from './components/shared/Footer/Footer'
+import Boostrap from "react-bootstrap";
 
 export default class App extends React.Component {
   state = {
@@ -54,7 +55,7 @@ export default class App extends React.Component {
     } else {
       const novoCarrinho = this.state.carrinho.map((item) => {
         if (produto.id === item.id) {
-          return { ...item, quantidade: item.quantidade + 1 };
+          return { ...item, quantidade: item.quantidade};
         } else {
           return item;
         }
