@@ -71,7 +71,6 @@ export default class App extends React.Component {
     });
     this.setState({ carrinho: item });
   };
-
   // removerProduto = (itemParaRemover) => {
   //   if(itemParaRemover.quantidade === 1) {
   //     const novoCarrinho = this.state.carrinho.filter((item)=>{
