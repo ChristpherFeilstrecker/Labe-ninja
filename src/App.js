@@ -1,20 +1,120 @@
 import React from "react";
-import Home from "./components/Home";
-/* import Item from "./components/Item"; */
-import Carrinho from "./components/Carrinho";
-import Produtos from "./components/Produtos";
+import Home from "./components/TelaInicial/Home";
+import TelaVazia from './components/shared/TelaEmConstrucao/TelaEmConstrucao'
+import Carrinho from "./components/TelaCarrinho/Carrinho";
+import Produtos from "./components/TelaProdutos/Produtos";
 import Cadastro from "./components/TelaCadastro/Cadastro";
-import { baseURL, headers } from "./constantes/credenciais";
-import axios from "axios";
+import Header from './components/shared/Header/Header'
+import Footer from './components/shared/Footer/Footer'
 
 export default class App extends React.Component {
   state = {
     carrinho: [],
     paginaAtual: "Home",
-    jobs: [],
     valorTotal: 0,
-    quantidade: 1
   };
+
+  /************************************ LOCAL STORAGE ************************************/
+  salvarLocalStorage = () => {
+    localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho));
+  };
+
+  pegarLocalStorage = () => {
+    const modificarCarrinho = localStorage.getItem("carrinho");
+    if (modificarCarrinho) {
+      this.setState({ carrinho: JSON.parse(modificarCarrinho) });
+    }
+  };
+
+  componentDidMount = () => {
+    this.pegarLocalStorage();
+  };
+
+  componentDidUpdate = (prevState) => {
+    if (prevState.carrinho !== this.state.carrinho) {
+      this.salvarLocalStorage();
+    }
+  };
+
+  /************************************ FUNÇÕES DO CARRINHO ************************************/
+  adicionarProduto = (produto) => {
+    console.log(produto);
+    const itemCarrinho = this.state.carrinho.filter((item) => {
+      if (item.id === produto.id) {
+        return item;
+      } else {
+        return false;
+      }
+    });
+
+    if (itemCarrinho.length === 0) {
+      produto.quantidade = 1;
+      const novoCarrinho = [produto, ...this.state.carrinho];
+      this.setState({ carrinho: novoCarrinho });
+    } else {
+      const novoCarrinho = this.state.carrinho.map((item) => {
+        if (produto.id === item.id) {
+          return { ...item, quantidade: item.quantidade + 1 };
+        } else {
+          return item;
+        }
+      });
+      this.setState({ carrinho: novoCarrinho });
+    }
+    this.adicionarValorTotal(produto.price);
+  };
+
+  removerProduto = (id) => {
+    const retirarItem = [...this.state.carrinho];
+    const item = retirarItem.filter((produto) => {
+      return produto.id !== id;
+    });
+    this.setState({ carrinho: item });
+  };
+
+  // removerProduto = (itemParaRemover) => {
+  //   if(itemParaRemover.quantidade === 1) {
+  //     const novoCarrinho = this.state.carrinho.filter((item)=>{
+  //       if(item.id !== itemParaRemover.id){
+  //         return item
+  //       }else{
+  //         return false
+  //       }
+  //     })
+  //     this.setState({carrinho: novoCarrinho})
+  //   } else {
+  //     const novoCarrinho = this.state.carrinho.map((item)=>{
+  //       if(itemParaRemover.id === item.id && item.quantidade >= 1){
+  //         return {...item, quantidade: item.quantidade - 1}
+  //       } else {
+  //         return item
+  //       }
+  //     })
+  //     this.setState({carrinho: novoCarrinho})
+  //   }
+  //   this.removerValorTotal(itemParaRemover.price)
+  // }
+
+  adicionarValorTotal = (valor) => {
+    this.setState({ valorTotal: this.state.valorTotal + valor });
+  };
+
+  removerValorTotal = (valor) => {
+    this.setState({ valorTotal: this.state.valorTotal - valor });
+  };
+
+  totalItens = () => {
+    return this.state.carrinho.reduce(
+      (total, item) => total + item.quantidade,
+      0
+    );
+  };
+
+  limparCarrinho = () => {
+    this.setState({ carrinho: [] });
+  };
+
+  /************************************ RENDERIZAR TELAS ************************************/
 
   trocaPagina = () => {
     switch (this.state.paginaAtual) {
@@ -25,6 +125,10 @@ export default class App extends React.Component {
             irParaCadastro={this.irParaCadastro}
           />
         );
+      case "Vazia":
+        return (
+          <TelaVazia />
+        )
       case "Cadastro":
         return (
           <Cadastro
@@ -39,6 +143,7 @@ export default class App extends React.Component {
             irParaHome={this.irParaHome}
             itensDoCarrinho={this.state.carrinho}
             removerProduto={this.removerProduto}
+            limparCarrinho={this.limparCarrinho}
           />
         );
       case "Produtos":
@@ -46,10 +151,7 @@ export default class App extends React.Component {
           <Produtos
             irParaCarrinho={this.irParaCarrinho}
             irParaHome={this.irParaHome}
-            getAllJobs={this.getAllJobs}
-            jobs={this.state.jobs}
             adicionarProduto={this.adicionarProduto}
-           
           />
         );
       default:
@@ -57,68 +159,13 @@ export default class App extends React.Component {
     }
   };
 
-  removerProduto = (itemParaRemover) => {
-    if(itemParaRemover.quantidade === 1) {
-      const novoCarrinho = this.state.carrinho.filter((item)=>{
-        if(item.id !== itemParaRemover.id){
-          return item
-        }else{
-          return false
-        }
-      })
-      this.setState({carrinho: novoCarrinho})
-    } else {
-      const novoCarrinho = this.state.carrinho.map((item)=>{
-        if(itemParaRemover.id === item.id && item.quantidade >= 1){
-          return {...item, quantidade: item.quantidade - 1}
-        } else {
-          return item
-        }
-      })
-      this.setState({carrinho: novoCarrinho})
-    }
-    this.removerValorTotal(itemParaRemover.price)
-  }
-
-
-  adicionarProduto = (produto) => {
-    console.log(produto)
-    const itemCarrinho = this.state.carrinho.filter((item) => {
-      if(item.id === produto.id){
-        return item
-      } else {
-        return false
-      }
-    });
-
-    if (itemCarrinho.length === 0) {
-      produto.quantidade = 1
-      const novoCarrinho = [produto, ...this.state.carrinho]
-      this.setState({carrinho: novoCarrinho})
-    } else {
-      const novoCarrinho = this.state.carrinho.map((item) => {
-        if(produto.id === item.id){
-          return {...item, quantidade: item.quantidade + 1}
-        } else {
-          return item
-        }
-      })
-      this.setState({carrinho: novoCarrinho}) 
-    }
-    this.adicionarValorTotal(produto.price)
-  };
-
-  adicionarValorTotal = (valor) => {
-    this.setState({valorTotal: this.state.valorTotal + valor})
-  }
-
-  removerValorTotal = (valor) => {
-    this.setState({valorTotal: this.state.valorTotal - valor})
-  }
-
   irParaHome = () => {
     this.setState({ paginaAtual: "Home" });
   };
+
+  irParaTelaVazia = () => {
+    this.setState({ paginaAtual: "Vazia"})
+  }
 
   irParaProdutos = () => {
     this.setState({ paginaAtual: "Produtos" });
@@ -132,21 +179,20 @@ export default class App extends React.Component {
     this.setState({ paginaAtual: "Carrinho" });
   };
 
-  componentDidMount = () => {
-    this.getAllJobs();
-  };
-
-  getAllJobs = async () => {
-    try {
-      const res = await axios.get(`${baseURL}/jobs`, headers);
-      this.setState({ jobs: res.data.jobs });
-      console.log(res.data.jobs);
-    } catch (err) {
-      alert("Erro!");
-    }
-  };
-
+  /************************************ RETORNO DE TELA ************************************/
   render() {
-    return <div>{this.trocaPagina()}</div>;
+    return (
+      <div>
+        <div>
+          <Header />
+        </div>
+        <div>
+        {this.trocaPagina()}
+        </div>
+        <div>
+          <Footer />
+        </div>
+      </div>
+    )
   }
 }

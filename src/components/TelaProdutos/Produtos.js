@@ -1,5 +1,6 @@
 import React from 'react';
-import Carrinho from './Carrinho'
+import { BASE_URL, headers } from "../../constantes/credenciais";
+import axios from "axios";
 export default class Produtos extends React.Component {
   state = {
     jobs:  [],
@@ -11,20 +12,19 @@ export default class Produtos extends React.Component {
     page: false
   }
 
-  componentDidUpdate() {
-    localStorage.setItem("carrinho", JSON.stringify(this.props.carrinho));
-  }
+  componentDidMount () {
+    this.getAllJobs();
+  };
 
-  componentDidMount() {
-    const modificarCarrinho = localStorage.getItem("carrinho");
-    if (modificarCarrinho) {
-      this.setState({ carrinho: JSON.parse(modificarCarrinho) });
+  getAllJobs = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/jobs`, headers);
+      this.setState({ jobs: res.data.jobs });
+      console.log(res.data.jobs);
+    } catch (err) {
+      alert("Erro!");
     }
-  }
-
-  voltarPagina = () => {
-    this.setState({page: !this.state.page})
-  }
+  };
 
   onChangeSequencia = (e) => {
     this.setState({sequencia: e.target.value})
@@ -46,12 +46,8 @@ export default class Produtos extends React.Component {
     this.setState({parametro: event.target.value})
   }
 
-  componentDidMount = () => {
-		this.props.getAllJobs()
-	}
-
   render(){
-    const servicos = this.props.jobs
+    const servicos = this.state.jobs
       .filter((item) =>{
         return item.title.toLowerCase().includes(this.state.filtro.toLowerCase()) ||
         item.description.toLowerCase().includes(this.state.filtro.toLowerCase())
@@ -87,11 +83,7 @@ export default class Produtos extends React.Component {
 
     return (
   <div>
-    {this.state.page ? (
-      <Carrinho 
-      voltar={this.voltarPagina}/>
-    ) : (
-      <div>
+    <div>
         Produtos
         <button onClick={this.props.irParaCarrinho}> Carrinho </button>
         <button onClick={this.props.irParaHome}> Home </button>
@@ -142,8 +134,6 @@ export default class Produtos extends React.Component {
         </div>
 
       </div>
-    )
-  }
   </div> 
     );
   }
