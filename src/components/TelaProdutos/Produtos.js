@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default class Produtos extends React.Component {
   state = {
-    jobs:  [],
+    listaServicos:  [],
     filtro: "",
     precoMin: "",
     precoMax: "",
@@ -20,7 +20,7 @@ export default class Produtos extends React.Component {
   getAllJobs = async () => {
     try {
       const res = await axios.get(`${BASE_URL}/jobs`, headers);
-      this.setState({ jobs: res.data.jobs });
+      this.setState({ listaServicos: res.data.jobs });
       console.log(res.data.jobs);
     } catch (err) {
       alert("Erro!");
@@ -48,7 +48,7 @@ export default class Produtos extends React.Component {
   }
 
   render(){
-    const servicos = this.state.jobs
+    const servicos = this.state.listaServicos
       .filter((item) =>{
         return item.title.toLowerCase().includes(this.state.filtro.toLowerCase()) ||
         item.description.toLowerCase().includes(this.state.filtro.toLowerCase())
@@ -132,7 +132,7 @@ export default class Produtos extends React.Component {
 
         <div>
 
-          {this.state.jobs.length > 0 ? 
+          {this.state.listaServicos.length > 0 ? 
           (
             <div>
               {servicos}
