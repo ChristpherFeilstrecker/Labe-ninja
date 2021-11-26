@@ -70,12 +70,15 @@ export default class Produtos extends React.Component {
         }
       })
       .map((item) => {
+        let converterData = new Date(item.dueDate);
+        const formatarData = converterData.toLocaleDateString("pt-BR", {
+      timeZone: "UTC",});
         return (
           <div key={item.id}>
             <h3><p>{item.title}</p></h3>
             <p>{item.description}</p>
             <p>R$: {item.price}</p>
-            <p>{item.dueDate}</p>
+            <p>{formatarData}</p>
             <p>Métodos de pagamento: {item.paymentMethods}</p>
             <button onClick={() => this.props.adicionarProduto(item)}>CONTRATAR!</button>
           </div>
