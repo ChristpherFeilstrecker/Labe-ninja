@@ -10,9 +10,9 @@ Tabela de conteúdos
    * Decidir Layout - Finalizado: (23/11/21)
    * Filtros - Finalizado: (23/11/21)
    * Página de cadastro - Finalizado (24/11/21)
-   * Carrinho - 🚧 Em construção...  🚧
-   * Página de produtos - 🚧 Em construção...  🚧
-   * Página de boas-vindas - 🚧 Em construção...  🚧
+   * Carrinho - Finalizado (25/11/21)
+   * Página de produtos - Finalizado (25/11/21)
+   * Página de boas-vindas - Finalizado (25/11/21)
    * Estilização/Responsividade - 🚧 Em construção...  🚧
 <!--te-->
 
