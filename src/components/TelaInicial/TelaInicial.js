@@ -12,6 +12,7 @@ export default class Home extends React.Component {
           <p>O jeito mais eficiente de conectar você aos melhores profissionais do mercado.</p>
         </div>
         <button onClick={this.props.produtos}>Contratar um Ninja</button>
+        <button onClick={this.props.cadastro}>Quero ser um Ninja</button>
       </div>
       <img src={ Pintor } alt="Imagem de um pintor" />
       </ ConteinerPrincipal>
