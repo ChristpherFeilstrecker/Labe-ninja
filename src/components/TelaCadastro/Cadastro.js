@@ -1,37 +1,36 @@
-import React from "react"
+import React from "react";
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
-import {
-  Form,
-  Select,
-} from 'antd';
+import { Form, Input, Button, Select, /*DatePicker, message*/ } from "antd";
+import Mecanico from "../../assets/imagens/mecanico.jpeg";
+import ConteinerPrincipal from "./StyledTelaCadastro";
 
 export default class Cadastro extends React.Component {
   state = {
-    titulo: '',
-    descricao: '',
-    preco: '',
+    titulo: "",
+    descricao: "",
+    preco: "",
     pagamento: [],
-    prazo: ''
-  }
+    prazo: "",
+  };
 
   mudarTitulo = (event) => {
-    this.setState({ titulo: event.target.value })
-  }
+    this.setState({ titulo: event.target.value });
+  };
   mudarDescricao = (event) => {
-    this.setState({ descricao: event.target.value })
-  }
+    this.setState({ descricao: event.target.value });
+  };
   mudarPreco = (event) => {
-    this.setState({ preco: event.target.value })
-  }
+    this.setState({ preco: event.target.value });
+  };
   mudarPagamento = (event) => {
-    const formaDePagamento = [...this.state.pagamento]
-     formaDePagamento.push(event.target.value)
-    this.setState({pagamento: formaDePagamento})
-  }
+    const formaDePagamento = [...this.state.pagamento];
+    formaDePagamento.push(event.target.value);
+    this.setState({ pagamento: formaDePagamento });
+  };
   mudarPrazo = (event) => {
-    this.setState({ prazo: event.target.value })
-  }
+    this.setState({ prazo: event.target.value });
+  };
 
   criarServico = async () => {
     const body = {
@@ -39,57 +38,73 @@ export default class Cadastro extends React.Component {
       description: this.state.descricao,
       price: Number(this.state.preco),
       paymentMethods: this.state.pagamento,
-      dueDate: this.state.prazo //{formatedDate}
-      };
+      dueDate: this.state.prazo,
+    };
     try {
-      const res = await axios.post(`${BASE_URL}/jobs`, body, headers)
-      alert("Cadastro efetuado.")
-      this.setState({ titulo:"", descricao:"", preco:"", pagamento:[], prazo:""})
-      console.log(res.data.jobs)
+      const res = await axios.post(`${BASE_URL}/jobs`, body, headers);
+      alert("Cadastro efetuado.");
+      this.setState({
+        titulo: "",
+        descricao: "",
+        preco: "",
+        pagamento: [],
+        prazo: "",
+      });
+      console.log(res.data.jobs);
     } catch (err) {
-      alert(err.response)
+      alert(err.response.message);
     }
-  }
+  };
 
-  render(){
+  render() {
     return (
-      <div>
-        <div>
-          <input 
-            placeholder={"Título"}
-            value={this.state.titulo}
-            onChange={this.mudarTitulo}
-          />
-          <input 
-            placeholder={"Descrição"}
-            value={this.state.descricao}
-            onChange={this.mudarDescricao}
-          />
-          <input 
-            placeholder={"Preço"}
-            value={this.state.preco}
-            onChange={this.mudarPreco}
-          />
-
-
-          <Form.Item label="Formas de Pagamento">
-          <Select mode="multiple">
-            <Select.Option value="Cartão">Cartão</Select.Option>
-            <Select.Option value="dinheiro">Dinheiro</Select.Option>
-            <Select.Option value="PayPal">PayPal</Select.Option>
-            <Select.Option value="Pix">Pix</Select.Option>
-          </Select>
+      <ConteinerPrincipal>
+        <img src={Mecanico} alt="Imagem de um mecânico" />
+        <Form layout="vertical">
+          <Form.Item label="Título">
+            <Input
+              placeholder={"Título"}
+              value={this.state.titulo}
+              onChange={this.mudarTitulo}
+            />
           </Form.Item>
-
-          <input 
+          <Form.Item label="Descrição">
+            <Input
+              placeholder={"Descrição"}
+              value={this.state.descricao}
+              onChange={this.mudarDescricao}
+            />
+          </Form.Item>
+          <Form.Item label="Preço">
+            <Input
+              placeholder={"Preço"}
+              value={this.state.preco}
+              onChange={this.mudarPreco}
+            />
+          </Form.Item>
+          <Form.Item label="Formas de Pagamento">
+            <Select mode="multiple">
+              <Select.Option value="Cartão">Cartão</Select.Option>
+              <Select.Option value="dinheiro">Dinheiro</Select.Option>
+              <Select.Option value="PayPal">PayPal</Select.Option>
+              <Select.Option value="Pix">Pix</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item label="Prazo">
+            <input
             type="date"
-            placeholder={"Prazo"}
-            value={this.state.prazo}
-            onChange={this.mudarPrazo}
-          />
-          <button onClick={() => this.criarServico()}>Cadastrar</button>
-        </div>
-      </div>
+              placeholder={"Prazo"}
+              value={this.state.prazo}
+              onChange={this.mudarPrazo}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" onClick={() => this.criarServico()}>
+              Cadastrar
+            </Button>
+          </Form.Item>
+        </Form>
+      </ConteinerPrincipal>
     );
   }
 }
