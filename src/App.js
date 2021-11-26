@@ -91,21 +91,6 @@ export default class App extends React.Component {
     this.setState({ carrinho: [] });
   };
   
-/* alteraBotao =(produto)=>{
-  
-  const servicosContratados = this.state.carrinho
-  .map((item) =>{
-    if(item.id===produto.id){
-      return <p>Serviço contratado</p>
-    }else{
-      return <button>Contratar</button>
-    }
-
-  })
-  return servicosContratados
-} */
-
-
   /************************************ RENDERIZAR TELAS ************************************/
 
   trocaPagina = () => {

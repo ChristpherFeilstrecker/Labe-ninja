@@ -1,18 +1,20 @@
 import React from "react";
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
-import { Form, Input, Button, Select, DatePicker, /*message*/ } from "antd";
+import { Form, Input, Button} from "antd";
 import Mecanico from "../../assets/imagens/mecanico.jpeg";
 import ConteinerPrincipal from "./StyledTelaCadastro";
+import  Select  from 'react-select'
 
-const opcoes
- = [
-  { value:"crédito", label:"Cartão de Crédito"},
-  { value:2, label:"Cartão de Débito"},
-  { value:3, label:"Pix"},
-  { value:4, label:"Paypal"},
-  { value:5, label:"Boleto"}
-]
+const opcoes = [
+  { value: 1, label: " Cartão de Débito " },
+  { value: 2, label: " Cartão de Crédito " },
+  { value: 3, label: " Pix " },
+  { value: 4, label: " Paypal " },
+  { value: 5, label: " Boleto " },
+  { value: 6, label: " Dinheiro " },
+];
+
 export default class Cadastro extends React.Component {
   state = {
     titulo: "",
@@ -32,26 +34,7 @@ export default class Cadastro extends React.Component {
     this.setState({ preco: event.target.value });
   };
   mudarPagamento = (event) => {
-    
-    let formaRepetida = false
-
-    for (let forma of this.state.pagamento){
-        if (forma === event.target.value){
-            formaRepetida = true
-        }
-    }
-
-    let value = [... this.state.pagamento]
-
-    if (formaRepetida === true){
-        value = this.state.pagamento.filter((forma) => {
-            return (forma !== event.target.value)
-        })
-    } else {
-        value.push(event.target.value)
-    }
-
-    this.setState({pagamento: value})
+    this.setState({pagamento : Array.isArray(event)?event.map((x)=>x.label):[] })
   };
   mudarPrazo = (event) => {
     this.setState({ prazo: event.target.value });
@@ -78,23 +61,7 @@ export default class Cadastro extends React.Component {
       });
       console.log(res.data.jobs);
     } catch (err) {
-      // .catch((err) => alert(err.response.data.message));
       console.log(err.response.data.message);
-
-  //     axios
-  //     .post(`${BASE_URL}/jobs`, body, headers)
-  //     .then((res) => {
-  //       alert(`O serviço ${this.state.title} foi criado com sucesso.`);
-  //       this.setState({
-  //         title: "",
-  //         description: "",
-  //         price: "",
-  //         dueDate: "",
-  //         paymentMethods: "",
-  //       });
-  //     })
-  //     .catch((err) => alert(err.response.data.message));
-  // };
     }
   };
 
@@ -124,22 +91,13 @@ export default class Cadastro extends React.Component {
               onChange={this.mudarPreco}
             />
           </Form.Item>
-          <Form.Item label="Formas de Pagamento">
-            <form action="/action_page.php">
-              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-              <label for="Débito">Débito</label>{/* <br> */}
-              <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-              <label for="Crédito">Crédito</label>{/* <br> */}
-              <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-              <label for="Paypal">Paypal</label>{/* <br><br> */}
-              <input type="submit" value="Submit">
-              <label for="Boleto">Boleto</label>{/* <br><br> */}
-              <input type="submit" value="Submit">
-              <label for="Pix">Pix</label>{/* <br><br> */}
-              <input type="submit" value="Submit">
-              </input>
-            </form>
-          </Form.Item>
+          <Select
+              isMulti
+              options={opcoes}
+              placeholder="Formas de Pagamento"
+              onChange={this.mudarPagamento}
+              onSelect={this.mudarPagamento}
+            />
           <Form.Item label="Prazo">
             <input type="date"
               placeholder={"Prazo"}
