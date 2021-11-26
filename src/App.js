@@ -1,12 +1,12 @@
 import React from "react";
-import Home from "./components/TelaInicial/Home";
-import TelaVazia from './components/shared/TelaEmConstrucao/TelaEmConstrucao'
+import TelaInicial from "./components/TelaInicial/TelaInicial";
+import TelaVazia from "./components/shared/TelaEmConstrucao/TelaEmConstrucao";
 import Carrinho from "./components/TelaCarrinho/Carrinho";
 import Produtos from "./components/TelaProdutos/Produtos";
 import Cadastro from "./components/TelaCadastro/Cadastro";
-import Header from './components/shared/Header/Header';
-import Footer from './components/shared/Footer/Footer';
-
+import Header from "./components/shared/Header/Header";
+import Footer from "./components/shared/Footer/Footer";
+import { GlobalStyle, ConteinerGeral } from "./StyledApp";
 
 export default class App extends React.Component {
   state = {
@@ -55,7 +55,7 @@ export default class App extends React.Component {
     } else {
       const novoCarrinho = this.state.carrinho.map((item) => {
         if (produto.id === item.id) {
-          return { ...item, quantidade: item.quantidade};
+          return { ...item, quantidade: item.quantidade };
         } else {
           return item;
         }
@@ -89,16 +89,13 @@ export default class App extends React.Component {
     switch (this.state.paginaAtual) {
       case "Home":
         return (
-          <Home
-            irParaProdutos={this.irParaProdutos}
+          <TelaInicial
+            produtos={this.irParaProdutos}
             irParaCadastro={this.irParaCadastro}
           />
         );
       case "Vazia":
-        return (
-          <TelaVazia 
-          home={this.irParaHome}/>
-        )
+        return <TelaVazia produtos={this.irParaProdutos} />;
       case "Cadastro":
         return (
           <Cadastro
@@ -125,7 +122,7 @@ export default class App extends React.Component {
           />
         );
       default:
-        return <Home />;
+        return <TelaInicial />;
     }
   };
 
@@ -134,8 +131,8 @@ export default class App extends React.Component {
   };
 
   irParaTelaVazia = () => {
-    this.setState({ paginaAtual: "Vazia"})
-  }
+    this.setState({ paginaAtual: "Vazia" });
+  };
 
   irParaProdutos = () => {
     this.setState({ paginaAtual: "Produtos" });
@@ -149,28 +146,28 @@ export default class App extends React.Component {
     this.setState({ paginaAtual: "Carrinho" });
   };
 
-
   /************************************ RETORNO DE TELA ************************************/
   render() {
     return (
       <div>
-        <div>
-          <Header 
-            pagina={this.state.paginaAtual}
-            home={this.irParaHome}
-            telaVazia={this.irParaTelaVazia}
-            produtos={this.irParaProdutos}
-            cadastro={this.irParaCadastro}
-            carrinho={this.irParaCarrinho}
-          />
-        </div>
-        <div>
-        {this.trocaPagina()}
-        </div>
-        <div>
-          <Footer />
-        </div>
+        <GlobalStyle />
+        <ConteinerGeral>
+          <div>
+            <Header
+              pagina={this.state.paginaAtual}
+              home={this.irParaHome}
+              telaVazia={this.irParaTelaVazia}
+              produtos={this.irParaProdutos}
+              cadastro={this.irParaCadastro}
+              carrinho={this.irParaCarrinho}
+            />
+          </div>
+          <div>{this.trocaPagina()}</div>
+          <div>
+            <Footer />
+          </div>
+        </ConteinerGeral>
       </div>
-    )
+    );
   }
 }
