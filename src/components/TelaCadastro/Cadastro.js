@@ -1,7 +1,7 @@
 import React from "react";
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
-import { Form, Input, Button, Select, /*DatePicker, message*/ } from "antd";
+import { Form, Input, Button, Select, DatePicker, /*message*/ } from "antd";
 import Mecanico from "../../assets/imagens/mecanico.jpeg";
 import ConteinerPrincipal from "./StyledTelaCadastro";
 
@@ -33,7 +33,25 @@ export default class Cadastro extends React.Component {
   };
   mudarPagamento = (event) => {
     
-    this.setState({ pagamento: event.target.value });
+    let formaRepetida = false
+
+    for (let forma of this.state.pagamento){
+        if (forma === event.target.value){
+            formaRepetida = true
+        }
+    }
+
+    let value = [... this.state.pagamento]
+
+    if (formaRepetida === true){
+        value = this.state.pagamento.filter((forma) => {
+            return (forma !== event.target.value)
+        })
+    } else {
+        value.push(event.target.value)
+    }
+
+    this.setState({pagamento: value})
   };
   mudarPrazo = (event) => {
     this.setState({ prazo: event.target.value });
@@ -47,6 +65,7 @@ export default class Cadastro extends React.Component {
       paymentMethods: this.state.pagamento,
       dueDate: this.state.prazo,
     };
+    console.log(body)
     try {
       const res = await axios.post(`${BASE_URL}/jobs`, body, headers);
       alert("Cadastro efetuado.");
@@ -59,7 +78,23 @@ export default class Cadastro extends React.Component {
       });
       console.log(res.data.jobs);
     } catch (err) {
-      alert(err.response.data);
+      // .catch((err) => alert(err.response.data.message));
+      console.log(err.response.data.message);
+
+  //     axios
+  //     .post(`${BASE_URL}/jobs`, body, headers)
+  //     .then((res) => {
+  //       alert(`O serviço ${this.state.title} foi criado com sucesso.`);
+  //       this.setState({
+  //         title: "",
+  //         description: "",
+  //         price: "",
+  //         dueDate: "",
+  //         paymentMethods: "",
+  //       });
+  //     })
+  //     .catch((err) => alert(err.response.data.message));
+  // };
     }
   };
 
@@ -102,17 +137,16 @@ export default class Cadastro extends React.Component {
             onChange={this.mudarPagamento}
             onSelect={this.mudarPagamento}
             value={this.state.pagamento}>
-            
-            </Select>
-               <Select.Option value="Cartão">Cartão</Select.Option>
-              <Select.Option value="dinheiro">Dinheiro</Select.Option>
-              <Select.Option value="PayPal">PayPal</Select.Option>
-              <Select.Option value="Pix">Pix</Select.Option>
-            </Select> */}
+            */
+            <select isMulti value={this.state.pagamento} onChange={this.mudarPagamento}>
+              <option value="Cartão">Cartão</option>
+              <option value="dinheiro">Dinheiro</option>
+              <option value="PayPal">PayPal</option>
+              <option value="Pix">Pix</option>
+            </select> }
           </Form.Item>
           <Form.Item label="Prazo">
-            <input
-            type="date"
+            <input type="date"
               placeholder={"Prazo"}
               value={this.state.prazo}
               onChange={this.mudarPrazo}
