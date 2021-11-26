@@ -1,7 +1,7 @@
 import React from "react";
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
-import { Form, Input, Button} from "antd";
+import { Form, Input, Button, message} from "antd";
 import Mecanico from "../../assets/imagens/mecanico.jpeg";
 import ConteinerPrincipal from "./StyledTelaCadastro";
 import  Select  from 'react-select'
@@ -48,10 +48,9 @@ export default class Cadastro extends React.Component {
       paymentMethods: this.state.pagamento,
       dueDate: this.state.prazo,
     };
-    console.log(body)
     try {
       const res = await axios.post(`${BASE_URL}/jobs`, body, headers);
-      alert("Cadastro efetuado.");
+      message.success("Cadastro efetuado.");
       this.setState({
         titulo: "",
         descricao: "",
@@ -59,9 +58,8 @@ export default class Cadastro extends React.Component {
         pagamento: [],
         prazo: "",
       });
-      console.log(res.data.jobs);
     } catch (err) {
-      console.log(err.response.data.message);
+      message.error(err.response.data.message);
     }
   };
 

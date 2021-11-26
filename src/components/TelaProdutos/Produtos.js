@@ -1,21 +1,29 @@
-import React from 'react';
+import React from "react";
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
-
+import DetalhesServico from "./DetalhesProduto";
+import Filtros from "./Filtros";
+import { ConteinerPrincipal, CardServicos, ConteinerPrecoData } from "./styles/StyledServicos";
 export default class Produtos extends React.Component {
   state = {
-    listaServicos:  [],
+    listaServicos: [],
     filtro: "",
     precoMin: "",
     precoMax: "",
     sequencia: 1,
     parametro: "title",
-    page: false
-  }
-
-  componentDidMount () {
-    this.getAllJobs();
+    pagina: false,
+    titulo: "",
+    descricao: "",
+    prazo: "",
+    pagamento: [],
+    preco: "",
+    idServico: "",
   };
+
+  componentDidMount() {
+    this.getAllJobs();
+  }
 
   getAllJobs = async () => {
     try {
@@ -27,123 +35,144 @@ export default class Produtos extends React.Component {
     }
   };
 
+  pegarTrabalhosId = async (id) => {
+    try {
+      const res = await axios.get(`${BASE_URL}/jobs/${id}`, headers);
+      this.setState({
+        produto: res.data,
+        titulo: res.data.title,
+        descricao: res.data.description,
+        prazo: res.data.dueDate,
+        pagamento: res.data.paymentMethods,
+        preco: res.data.price,
+        idServico: id,
+      });
+      console.log(this.props.id);
+    } catch (err) {
+      alert("Erro!");
+    }
+  };
+
+  abrirPaginaDetalhes = (id) => {
+    this.setState({ pagina: true, idServico: id });
+  };
+  fecharPaginaDetalhes = () => {
+    this.setState({
+      pagina: false,
+    });
+  };
+
   onChangeSequencia = (e) => {
-    this.setState({sequencia: e.target.value})
-  }
+    this.setState({ sequencia: e.target.value });
+  };
 
   updateFiltro = (e) => {
-    this.setState({filtro: e.target.value})
-  }
+    this.setState({ filtro: e.target.value });
+  };
 
   updatePrecoMin = (event) => {
-    this.setState({ precoMin: event.target.value })
-  }
+    this.setState({ precoMin: event.target.value });
+  };
 
   updatePrecoMax = (event) => {
-    this.setState({ precoMax: event.target.value })
-  }
+    this.setState({ precoMax: event.target.value });
+  };
 
   updateParametro = (event) => {
-    this.setState({parametro: event.target.value})
-  }
+    this.setState({ parametro: event.target.value });
+  };
 
-  render(){
+  render() {
     const servicos = this.state.listaServicos
-      .filter((item) =>{
-        return item.title.toLowerCase().includes(this.state.filtro.toLowerCase()) ||
-        item.description.toLowerCase().includes(this.state.filtro.toLowerCase())
+      .filter((item) => {
+        return (
+          item.title.toLowerCase().includes(this.state.filtro.toLowerCase()) ||
+          item.description
+            .toLowerCase()
+            .includes(this.state.filtro.toLowerCase())
+        );
       })
-      .filter((item)=>{
-        return this.state.precoMin === "" || item.price >= this.state.precoMin
+      .filter((item) => {
+        return this.state.precoMin === "" || item.price >= this.state.precoMin;
       })
-      .filter((item)=>{
-        return this.state.precoMax === "" || item.price <= this.state.precoMax
+      .filter((item) => {
+        return this.state.precoMax === "" || item.price <= this.state.precoMax;
       })
       .sort((item1, item2) => {
-        switch (this.state.parametro){
-        case "title":
-          return this.state.sequencia * item1.title.localeCompare(item2.title)
-        case "dueDate":
-          return this.state.sequencia*(new Date(item1.dueDate).getTime() - new Date(item2.dueDate).getTime())
-        default:
-        return this.state.sequencia * (item1.price - item2.price)
+        switch (this.state.parametro) {
+          case "title":
+            return (
+              this.state.sequencia * item1.title.localeCompare(item2.title)
+            );
+          case "dueDate":
+            return (
+              this.state.sequencia *
+              (new Date(item1.dueDate).getTime() -
+                new Date(item2.dueDate).getTime())
+            );
+          default:
+            return this.state.sequencia * (item1.price - item2.price);
         }
       })
       .map((item) => {
         let converterData = new Date(item.dueDate);
         const formatarData = converterData.toLocaleDateString("pt-BR", {
-      timeZone: "UTC",});
+          timeZone: "UTC",
+        });
         return (
-          <div key={item.id}>
-            <h3><p>{item.title}</p></h3>
-            <p>{item.description}</p>
-            <p>R$: {item.price}</p>
-            <p>{formatarData}</p>
-            <p>Métodos de pagamento: {item.paymentMethods}</p>
-            <button onClick={() => this.props.adicionarProduto(item)}>CONTRATAR!</button>
-          </div>
-        )
-    })
-
-    
-    return (
-  <div>
-    <div>
-        <h2>Pesquisa</h2>
-        <input
-         placeholder="Pesquisa"
-         value={this.state.filtro}
-         onChange={this.updateFiltro}
-        />
-        
-        <h2>Filtros</h2>
-        <label for="numero">Preço mínimo:</label>
-        <input
-          type = "number"
-          placeholder = "Preço Mínimo"
-          value = {this.state.precoMin}
-          onChange = {this.updatePrecoMin}
-        />
-
-        <label for="numero">Preço máximo:</label>
-        <input
-          type = "number"
-          placeholder = "Preço Máximo"
-          value = {this.state.precoMax}
-          onChange = {this.updatePrecoMax}
-        />
-        
-        <label for="sort">Ordenação: </label>
-         <select
-          name="sort"
-          value={this.state.parametro}
-          onChange={this.updateParametro}
-        >
-          <option value="title">Título</option>
-          <option value="dueDate">Prazo</option>
-          <option value="price">Preço</option>
-         </select>
-
-        <label for="sort">Ordenação preço:</label>
-        <select value={this.state.sequencia} onChange={this.onChangeSequencia}>
-          <option value={1}>Crescente</option>
-          <option value={-1}>Decrescente</option>
-        </select>
-
-        <div>
-
-          {this.state.listaServicos.length > 0 ? 
-          (
-            <div>
-              {servicos}
+          <CardServicos key={item.id}>
+            <div onClick={() => this.pegarTrabalhosId(item.id)}>
+              <h4 onClick={() => {this.abrirPaginaDetalhes(item.id)}}>
+                VER DETALHES
+              </h4>
             </div>
-          ) : <h1>Carregando...</h1>
-        }
+            <h3>{item.title}</h3>
+            <ConteinerPrecoData>
+              <p>Até {formatarData} por R$ <span>{item.price},00</span></p>
+            </ConteinerPrecoData>
+            <button onClick={() => this.props.adicionarProduto(item)}>
+              CONTRATAR
+            </button>
+          </CardServicos>
+        );
+      });
 
+    return (
+      <div>
+        {this.state.pagina && (
+          <DetalhesServico
+            paginaProdutos={this.fecharPaginaDetalhes}
+            id={this.state.idServico}
+            titulo={this.state.titulo}
+            descricao={this.state.descricao}
+            preco={this.state.preco}
+            prazo={this.state.prazo}
+            pagamento={this.state.pagamento}
+            adicionarProduto={this.props.adicionarProduto}
+          />
+        )}
+        <div>
+          <Filtros
+            filtro={this.state.filtro}
+            mudarFiltro={this.updateFiltro}
+            precoMin={this.state.precoMin}
+            mudarPrecoMin={this.updatePrecoMin}
+            precoMax={this.state.precoMax}
+            mudarPrecoMax={this.updatePrecoMax}
+            parametro={this.state.parametro}
+            mudarParametro={this.updateParametro}
+            sequencia={this.state.sequencia}
+            mudarSequencia={this.onChangeSequencia}
+          />
+          <div>
+            {this.state.listaServicos.length > 0 ? (
+              <ConteinerPrincipal>{servicos}</ConteinerPrincipal>
+            ) : (
+              <h1>Carregando...</h1>
+            )}
+          </div>
         </div>
-
       </div>
-  </div> 
     );
   }
 }
