@@ -125,25 +125,20 @@ export default class Cadastro extends React.Component {
             />
           </Form.Item>
           <Form.Item label="Formas de Pagamento">
-          {/* <Select mode="multiple" value={this.state.pagamento} onChange={this.mudarPagamento}>
-              <Select.Option value="Cartão">Cartão</Select.Option>
-              <Select.Option>Dinheiro</Select.Option>
-              <Select.Option>PayPal</Select.Option>
-              <Select.Option>Pix</Select.Option>
-            </Select> */}
-            {/* <Select mode="multiple"
-            options={opcoes}
-            placeholder="Formas de Pagamento.."
-            onChange={this.mudarPagamento}
-            onSelect={this.mudarPagamento}
-            value={this.state.pagamento}>
-            */
-            <select isMulti value={this.state.pagamento} onChange={this.mudarPagamento}>
-              <option value="Cartão">Cartão</option>
-              <option value="dinheiro">Dinheiro</option>
-              <option value="PayPal">PayPal</option>
-              <option value="Pix">Pix</option>
-            </select> }
+            <form action="/action_page.php">
+              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+              <label for="Débito">Débito</label>{/* <br> */}
+              <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+              <label for="Crédito">Crédito</label>{/* <br> */}
+              <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+              <label for="Paypal">Paypal</label>{/* <br><br> */}
+              <input type="submit" value="Submit">
+              <label for="Boleto">Boleto</label>{/* <br><br> */}
+              <input type="submit" value="Submit">
+              <label for="Pix">Pix</label>{/* <br><br> */}
+              <input type="submit" value="Submit">
+              </input>
+            </form>
           </Form.Item>
           <Form.Item label="Prazo">
             <input type="date"
