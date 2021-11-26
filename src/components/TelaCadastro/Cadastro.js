@@ -69,7 +69,7 @@ export default class Cadastro extends React.Component {
           <div>
             <h4>Forma de pagamento</h4>
 
-                  <input type="checkbox" name="debito" value={this.state.pagamento} onChange={this.mudarPagamento} />
+                  {/* <input type="checkbox" name="debito" value={this.state.pagamento} onChange={this.mudarPagamento} />
                   <label for="debito">Cartão de Débito</label>
                   <input type="checkbox" name="credito" value={this.state.pagamento} onChange={this.mudarPagamento} />
                   <label for="credito">Cartão de Crédito</label>
@@ -78,7 +78,7 @@ export default class Cadastro extends React.Component {
                   <input type="checkbox" name="boleto" value={this.state.pagamento} onChange={this.mudarPagamento}/>
                   <label for="boleto">Boleto</label>
                   <input type="checkbox" name="pix" value={this.state.pagamento} onChange={this.mudarPagamento}/>
-                  <label for="pix">Pix</label>
+                  <label for="pix">Pix</label> */}
     
           </div>
           <select value={this.state.pagamento} onChange={this.mudarPagamento}>

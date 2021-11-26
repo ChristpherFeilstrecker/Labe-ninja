@@ -126,8 +126,8 @@ export default class Produtos extends React.Component {
         </select>
 
         <div>
-        {servicos} 
-        {this.state.jobs.length > 0 ? (<ul>{servicos}</ul>) : (<p>Carregando...</p>)}
+          
+        {servicos}
         </div>
 
       </div>
