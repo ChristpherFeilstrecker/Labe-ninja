@@ -15,19 +15,6 @@ export default class Cadastro extends React.Component {
     prazo: ''
   }
 
-  let convertDate = new Date(this.state.prazo);
-    const formatedDate = convertDate.toLocaleDateString("pt-BR", {
-      timeZone: "UTC",
-    });
-
-  
-  //
-
-
-    
-  
-   // 
-    
   mudarTitulo = (event) => {
     this.setState({ titulo: event.target.value })
   }
