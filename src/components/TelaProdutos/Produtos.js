@@ -131,6 +131,7 @@ export default class Produtos extends React.Component {
         </select>
 
         <div>
+
           {this.state.jobs.length > 0 ? 
           (
             <div>
@@ -138,6 +139,7 @@ export default class Produtos extends React.Component {
             </div>
           ) : <h1>Carregando...</h1>
         }
+
         </div>
 
       </div>

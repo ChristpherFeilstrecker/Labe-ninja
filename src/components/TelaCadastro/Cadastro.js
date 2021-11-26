@@ -71,6 +71,7 @@ export default class Cadastro extends React.Component {
             onChange={this.mudarPreco}
           />
 
+
           <Form.Item label="Formas de Pagamento">
           <Select mode="multiple">
             <Select.Option value="Cartão">Cartão</Select.Option>
