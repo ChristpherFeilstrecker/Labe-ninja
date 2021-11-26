@@ -5,6 +5,14 @@ import { Form, Input, Button, Select, /*DatePicker, message*/ } from "antd";
 import Mecanico from "../../assets/imagens/mecanico.jpeg";
 import ConteinerPrincipal from "./StyledTelaCadastro";
 
+const opcoes
+ = [
+  { value:"crédito", label:"Cartão de Crédito"},
+  { value:2, label:"Cartão de Débito"},
+  { value:3, label:"Pix"},
+  { value:4, label:"Paypal"},
+  { value:5, label:"Boleto"}
+]
 export default class Cadastro extends React.Component {
   state = {
     titulo: "",
@@ -24,9 +32,8 @@ export default class Cadastro extends React.Component {
     this.setState({ preco: event.target.value });
   };
   mudarPagamento = (event) => {
-    const formaDePagamento = [...this.state.pagamento];
-    formaDePagamento.push(event.target.value);
-    this.setState({ pagamento: formaDePagamento });
+    
+    this.setState({ pagamento: event.target.value });
   };
   mudarPrazo = (event) => {
     this.setState({ prazo: event.target.value });
@@ -52,7 +59,7 @@ export default class Cadastro extends React.Component {
       });
       console.log(res.data.jobs);
     } catch (err) {
-      alert(err.response.message);
+      alert(err.response.data);
     }
   };
 
@@ -83,12 +90,25 @@ export default class Cadastro extends React.Component {
             />
           </Form.Item>
           <Form.Item label="Formas de Pagamento">
-            <Select mode="multiple">
+          {/* <Select mode="multiple" value={this.state.pagamento} onChange={this.mudarPagamento}>
               <Select.Option value="Cartão">Cartão</Select.Option>
+              <Select.Option>Dinheiro</Select.Option>
+              <Select.Option>PayPal</Select.Option>
+              <Select.Option>Pix</Select.Option>
+            </Select> */}
+            {/* <Select mode="multiple"
+            options={opcoes}
+            placeholder="Formas de Pagamento.."
+            onChange={this.mudarPagamento}
+            onSelect={this.mudarPagamento}
+            value={this.state.pagamento}>
+            
+            </Select>
+               <Select.Option value="Cartão">Cartão</Select.Option>
               <Select.Option value="dinheiro">Dinheiro</Select.Option>
               <Select.Option value="PayPal">PayPal</Select.Option>
               <Select.Option value="Pix">Pix</Select.Option>
-            </Select>
+            </Select> */}
           </Form.Item>
           <Form.Item label="Prazo">
             <input

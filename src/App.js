@@ -7,6 +7,7 @@ import Cadastro from "./components/TelaCadastro/Cadastro";
 import Header from "./components/shared/Header/Header";
 import Footer from "./components/shared/Footer/Footer";
 import { GlobalStyle, ConteinerGeral } from "./StyledApp";
+import { message } from "antd";
 
 export default class App extends React.Component {
   state = {
@@ -43,24 +44,31 @@ export default class App extends React.Component {
     const itemCarrinho = this.state.carrinho.filter((item) => {
       if (item.id === produto.id) {
         return item;
+           
       } else {
         return false;
+        
       }
     });
 
     if (itemCarrinho.length === 0) {
       produto.quantidade = 1;
+      message.success("Serviço selecionado")
       const novoCarrinho = [produto, ...this.state.carrinho];
       this.setState({ carrinho: novoCarrinho });
+      
     } else {
       const novoCarrinho = this.state.carrinho.map((item) => {
-        if (produto.id === item.id) {
+        if (produto.id === item.id) {   
+          message.error("Produto já adicionado")  
           return { ...item, quantidade: item.quantidade };
         } else {
           return item;
-        }
-      });
+        }  
+      } 
+      );
       this.setState({ carrinho: novoCarrinho });
+     
     }
   };
 
@@ -82,6 +90,21 @@ export default class App extends React.Component {
   limparCarrinho = () => {
     this.setState({ carrinho: [] });
   };
+  
+/* alteraBotao =(produto)=>{
+  
+  const servicosContratados = this.state.carrinho
+  .map((item) =>{
+    if(item.id===produto.id){
+      return <p>Serviço contratado</p>
+    }else{
+      return <button>Contratar</button>
+    }
+
+  })
+  return servicosContratados
+} */
+
 
   /************************************ RENDERIZAR TELAS ************************************/
 
@@ -91,7 +114,7 @@ export default class App extends React.Component {
         return (
           <TelaInicial
             produtos={this.irParaProdutos}
-            irParaCadastro={this.irParaCadastro}
+            cadastro={this.irParaCadastro}
           />
         );
       case "Vazia":
@@ -119,6 +142,7 @@ export default class App extends React.Component {
             irParaCarrinho={this.irParaCarrinho}
             irParaHome={this.irParaHome}
             adicionarProduto={this.adicionarProduto}
+            alteraBotao={this.alteraBotao}
           />
         );
       default:
@@ -148,6 +172,7 @@ export default class App extends React.Component {
 
   /************************************ RETORNO DE TELA ************************************/
   render() {
+    
     return (
       <div>
         <GlobalStyle />
