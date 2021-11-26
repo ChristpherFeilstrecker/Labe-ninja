@@ -5,8 +5,9 @@ export default function Header(props) {
         return(
             <div>
                 <h2 onClick={props.home}>LabeNinja</h2>
-                <button>Como Funciona</button>
-                <button onClick={props.produtos}>Entrar</button>
+                <button onClick={props.telaVazia}>Como Funciona</button>
+                <button onclick={props.telaVazia}>Entrar</button>
+                <button onClick={props.produtos}>Quero contratar um ninja</button>
                 <button onClick={props.cadastro}>Quero ser um Ninja</button>
             </div>
         )

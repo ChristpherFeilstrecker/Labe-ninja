@@ -4,9 +4,9 @@ import TelaVazia from './components/shared/TelaEmConstrucao/TelaEmConstrucao'
 import Carrinho from "./components/TelaCarrinho/Carrinho";
 import Produtos from "./components/TelaProdutos/Produtos";
 import Cadastro from "./components/TelaCadastro/Cadastro";
-import Header from './components/shared/Header/Header'
-import Footer from './components/shared/Footer/Footer'
-import Boostrap from "react-bootstrap";
+import Header from './components/shared/Header/Header';
+import Footer from './components/shared/Footer/Footer';
+
 
 export default class App extends React.Component {
   state = {
@@ -62,7 +62,6 @@ export default class App extends React.Component {
       });
       this.setState({ carrinho: novoCarrinho });
     }
-    this.adicionarValorTotal(produto.price);
   };
 
   removerProduto = (id) => {
@@ -71,36 +70,6 @@ export default class App extends React.Component {
       return produto.id !== id;
     });
     this.setState({ carrinho: item });
-  };
-  // removerProduto = (itemParaRemover) => {
-  //   if(itemParaRemover.quantidade === 1) {
-  //     const novoCarrinho = this.state.carrinho.filter((item)=>{
-  //       if(item.id !== itemParaRemover.id){
-  //         return item
-  //       }else{
-  //         return false
-  //       }
-  //     })
-  //     this.setState({carrinho: novoCarrinho})
-  //   } else {
-  //     const novoCarrinho = this.state.carrinho.map((item)=>{
-  //       if(itemParaRemover.id === item.id && item.quantidade >= 1){
-  //         return {...item, quantidade: item.quantidade - 1}
-  //       } else {
-  //         return item
-  //       }
-  //     })
-  //     this.setState({carrinho: novoCarrinho})
-  //   }
-  //   this.removerValorTotal(itemParaRemover.price)
-  // }
-
-  adicionarValorTotal = (valor) => {
-    this.setState({ valorTotal: this.state.valorTotal + valor });
-  };
-
-  removerValorTotal = (valor) => {
-    this.setState({ valorTotal: this.state.valorTotal - valor });
   };
 
   totalItens = () => {
@@ -127,7 +96,8 @@ export default class App extends React.Component {
         );
       case "Vazia":
         return (
-          <TelaVazia />
+          <TelaVazia 
+          home={this.irParaHome}/>
         )
       case "Cadastro":
         return (
@@ -178,6 +148,7 @@ export default class App extends React.Component {
   irParaCarrinho = () => {
     this.setState({ paginaAtual: "Carrinho" });
   };
+
 
   /************************************ RETORNO DE TELA ************************************/
   render() {

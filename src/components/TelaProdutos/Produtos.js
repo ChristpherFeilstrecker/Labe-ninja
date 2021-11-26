@@ -1,6 +1,7 @@
 import React from 'react';
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
+
 export default class Produtos extends React.Component {
   state = {
     jobs:  [],
@@ -69,18 +70,22 @@ export default class Produtos extends React.Component {
         }
       })
       .map((item) => {
+        let converterData = new Date(item.dueDate);
+        const formatarData = converterData.toLocaleDateString("pt-BR", {
+      timeZone: "UTC",});
         return (
           <div key={item.id}>
             <h3><p>{item.title}</p></h3>
             <p>{item.description}</p>
             <p>R$: {item.price}</p>
-            <p>{item.dueDate}</p>
+            <p>{formatarData}</p>
             <p>Métodos de pagamento: {item.paymentMethods}</p>
             <button onClick={() => this.props.adicionarProduto(item)}>CONTRATAR!</button>
           </div>
         )
     })
 
+    
     return (
   <div>
     <div>
@@ -126,8 +131,15 @@ export default class Produtos extends React.Component {
         </select>
 
         <div>
-          
-        {servicos}
+
+          {this.state.jobs.length > 0 ? 
+          (
+            <div>
+              {servicos}
+            </div>
+          ) : <h1>Carregando...</h1>
+        }
+
         </div>
 
       </div>

@@ -21,7 +21,6 @@ export default class Carrinho extends React.Component {
     this.props.limparCarrinho()
   }
 
-
   render(){
     const itens = this.props.itensDoCarrinho.map(item =>{
       return (
