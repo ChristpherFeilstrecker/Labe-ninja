@@ -15,7 +15,7 @@ const Produto = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 1100px;
+  width: 1280px;
   margin: 20px;
   background-color: #CDC8E1;
   height: 40px;
