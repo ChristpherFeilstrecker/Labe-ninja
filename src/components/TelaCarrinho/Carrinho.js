@@ -1,10 +1,5 @@
 import React from "react"
-import styled from 'styled-components';
-// import Item from "./Item";
-
-const ConjuntoDoCarrinho = styled.div`
-    border: 1px solid black;
-`
+import {ConjuntoDoCarrinho, Produto, Servicos, ItemUnico, ValorTotal, DisplayProdutos, FinalizarCompra}from './StyledCarrinho';
 
 export default class Carrinho extends React.Component {
   valorTotalCarrinho = (listaServicos) => {
@@ -24,18 +19,19 @@ export default class Carrinho extends React.Component {
   render(){
     const itens = this.props.itensDoCarrinho.map(item =>{
       return (
-        <div key={item.id}>
-          <li>{item.title}</li>
-          <li>{item.price}</li>
+        <Produto key={item.id}>
+          <ItemUnico>{item.title}</ItemUnico>
+          <ItemUnico>R$ {item.price}</ItemUnico>
           <button onClick={() => this.props.removerProduto(item.id)}>x</button>
-        </div>
+        </Produto>
       )
     })
 
 
     return (
       <ConjuntoDoCarrinho>
-        <h2>Carrinho</h2>
+        <Servicos>SERVIÇOS SELECIONADOS</Servicos>
+        <DisplayProdutos>
         {this.props.itensDoCarrinho.length === 0 && (
           <div>
             <h4>Você ainda não selecionou um serviço<span role="img" aria-label="Emoji triste">😕</span></h4>
@@ -48,12 +44,15 @@ export default class Carrinho extends React.Component {
           <div>
           {itens}
         </div>
-        <p>Valor Total: R$ {this.valorTotalCarrinho(this.props.itensDoCarrinho)}</p>
+        <FinalizarCompra>
+        <ValorTotal>Valor Total: R$ {this.valorTotalCarrinho(this.props.itensDoCarrinho)}</ValorTotal>
         <button onClick={this.props.limparCarrinho}>Limpar carrinho</button>
-        <button onClick={this.mensagemFinalizarCarrinho}>Finalizar</button>
         <button onClick={this.props.irParaProdutos}> Selecionar mais serviços </button>
+        <button onClick={this.mensagemFinalizarCarrinho}>Finalizar</button>
+        </FinalizarCompra>
           </div>
         )}
+        </DisplayProdutos>
       </ConjuntoDoCarrinho>
     );
   }
