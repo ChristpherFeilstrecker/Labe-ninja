@@ -1,6 +1,6 @@
 import React from 'react';
 import Cachorro from '../../../assets/imagens/cachorrinho.jpeg'
-import {CardIcones, Icone, IconeIMG,CarMainConstrucao, TextoMain} from "../StyledTelaEmConstrucao"
+import {CardIcones, Icone, IconeIMG,CarMainConstrucao, TextoMain} from "./StyledTelaEmConstrucao"
 import Icone1 from "../../../assets/imagens/BookAndPencil.png"
 import Icone2 from "../../../assets/imagens/Foundation.png"
 import Icone3 from "../../../assets/imagens/FryingPan.png"

@@ -6,7 +6,7 @@ const DetalhesConteiner = styled.div`
   background: #CDC8E1;
   border-radius: 10px;
   position: absolute;
-  z-index: 3;
+  z-index: 2000;
   margin: 20% 40%;
   display: flex;
   flex-direction: column;

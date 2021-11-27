@@ -1,4 +1,5 @@
 import React from "react";
+import { Modal} from "antd";
 import { DetalhesConteiner, ConteinerPagamento } from './styles/StyledDetalhes'
 import { ConteinerPrecoData } from './styles/StyledServicos'
 
