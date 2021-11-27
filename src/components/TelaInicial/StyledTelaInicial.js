@@ -22,7 +22,9 @@ const ItemIcone = styled.div `
   img {
     width: 70%;
     height: 70%;
-    background: #7D4ED4;
+    /* background: #E8D0AE; */
+    /* background: #CCA3FF; */
+    background-color: #7D4ED4;
     border-radius: 100%;
     padding: 0.8rem;
   }
