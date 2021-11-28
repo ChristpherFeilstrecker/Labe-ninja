@@ -8,6 +8,21 @@ const ConteinerHome = styled.div`
   img {
     width: 8%;
   }
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+    max-width: 480px;
+    min-width: 320px;
+  }
+  img {
+    width: 20%;
+  }
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  /* tablets */
+  }
+  @media screen and (min-device-width : 1200px) {
+  /* computadores */
+}
+
 `;
 
 const CabecalhoHome = styled.div`
@@ -28,6 +43,16 @@ const CabecalhoHome = styled.div`
       cursor: pointer;
     }
   }
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  }
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  /* tablets */
+  }
+  @media screen and (min-device-width : 1200px) {
+  /* computadores */
+}
+
 `;
 
 const ConteinerCadastro = styled.div`
@@ -52,6 +77,16 @@ const ConteinerCadastro = styled.div`
       cursor: pointer;
     }
   }
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  }
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  /* tablets */
+  }
+  @media screen and (min-device-width : 1200px) {
+  /* computadores */
+}
+
 `;
 
 const LogoTextoCadastro = styled.div`
@@ -65,6 +100,16 @@ const LogoTextoCadastro = styled.div`
     color: #7d4ed4;
     font-size: 1.2rem;
   }
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  }
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  /* tablets */
+  }
+  @media screen and (min-device-width : 1200px) {
+  /* computadores */
+}
+
 `;
 
 const ConteinerProdutos = styled.div `
@@ -79,6 +124,16 @@ const ConteinerProdutos = styled.div `
     width: 2%;
     margin-right: 2rem;
   }
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  }
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  /* tablets */
+  }
+  @media screen and (min-device-width : 1200px) {
+  /* computadores */
+}
+
 `
 
 const ConteinerCarrinho = styled.div`
@@ -86,6 +141,16 @@ const ConteinerCarrinho = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  }
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  /* tablets */
+  }
+  @media screen and (min-device-width : 1200px) {
+  /* computadores */
+}
+
 `;
 
 const IconeCarrinho = styled.img``;
@@ -101,7 +166,18 @@ const TextoCarrinho = styled.div`
   img {
     width: 8.6%;
   }
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  }
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  /* tablets */
+  }
+  @media screen and (min-device-width : 1200px) {
+  /* computadores */
+}
+
 `;
+
 
 export {
   ConteinerHome,

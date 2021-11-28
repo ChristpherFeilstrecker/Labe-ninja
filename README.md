@@ -1,6 +1,6 @@
 # LabeNinja
 
-Somos um site especializado na conexão de prestadores de serviço com pessoas que necessitam desses serviços e você poderá [acessar ao LabeNinja aqui](https://wakeful-self.surge.sh/).
+Somos um site especializado na conexão de prestadores de serviço com pessoas que necessitam desses serviços e você poderá [acessar ao LabeNinja aqui](  ).
 
 ### Desenvolvedores:
  - Christopher - carrinho e filtros.

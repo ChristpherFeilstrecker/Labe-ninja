@@ -13,7 +13,7 @@ Tabela de conteúdos
    * Carrinho - Finalizado (25/11/21)
    * Página de produtos - Finalizado (25/11/21)
    * Página de boas-vindas - Finalizado (25/11/21)
-   * Estilização/Responsividade - 🚧 Em construção...  🚧
+   * Estilização/Responsividade - Finalizado (28/11/21)  🚧
 <!--te-->
 
 Diário de trabalho
@@ -34,3 +34,9 @@ Diário de trabalho
 * Montagem do carrinho
 <!--te-->
         -Descrição: Tivemos dificuldade em montar o carrinho mas com a ajuda da aula gravada do ìndio, os slides e o plantão conseguimos fazer ele funcionar. Planejamos deixar os dois últimos dias apenas para estilização e detalhes finais.
+25/11/21:
+<!--ts-->
+* Montagem do carrinho
+<!--te-->
+        -Descrição: Nesse dia terminamos de fazer todos os funcionamentos da página e começamos a trabalhar com a estilização do site.
+
