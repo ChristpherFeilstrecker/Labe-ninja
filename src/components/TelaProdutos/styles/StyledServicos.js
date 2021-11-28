@@ -5,13 +5,13 @@ const ConteinerPrincipal = styled.div`
   grid-template-columns: repeat(4, 1fr);
   overflow: auto;
   gap: 2rem;
-  margin: 2rem 3rem 1rem;
+  margin: 2rem 4rem 1rem;
   min-height: 25.8rem;
 `;
 
 const CardServicos = styled.div`
-  width: 18rem;
-  height: 12.6rem;
+  width: 16rem;
+  height: 10.6rem;
   background: #dfdbf0;
   border-radius: 30px;
   display: flex;
@@ -19,21 +19,30 @@ const CardServicos = styled.div`
   align-items: center;
 
   h4 {
-    margin-right: 9rem;
-    padding: 1rem 0 0.5rem;
+    margin-right: 8rem;
+    padding: 0.8rem 0 0.1rem;
     color: #7d4ed4;
     cursor: default;
+    font-size: 0.8rem;
   }
   h3 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     word-wrap: break-word;
     text-align: center;
+  }
+
+  button {
+    background: #7d4ed4;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 2rem;
   }
 `;
 
 const ConteinerPrecoData = styled.div`
   display: flex;
-  font-size: 1.1rem;
+  font-size: 1rem;
 
   span {
     font-weight: bold;

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const ConjuntoDoCarrinho = styled.div`
   display: flex;
-  min-height: 31.4rem;
+  min-height: 33rem;
   width: 1280px;
   flex-direction: column;
   align-content: center;
@@ -26,10 +26,11 @@ const Produto = styled.div`
   height: 5rem;
 ` 
 const Servicos = styled.div`
+  margin-top: 1rem;
   text-align: center;
   font-size: 20px;
   background: #ffffff;
-  width: 90.8rem;
+  width: 90.7rem;
   padding: 0.5rem;
   color: #7D4ED4;
 `

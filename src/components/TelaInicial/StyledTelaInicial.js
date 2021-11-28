@@ -26,8 +26,6 @@ const ItemIcone = styled.div`
   img {
     width: 66%;
     height: 66%;
-    /* background: #E8D0AE; */
-    /* background: #CCA3FF; */
     background-color: #7d4ed4;
     border-radius: 100%;
     padding: 0.8rem;
