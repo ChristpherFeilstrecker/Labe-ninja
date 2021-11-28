@@ -10,8 +10,8 @@ Somos um site especializado na conexão de prestadores de serviço com pessoas q
 
 ### Tecnologia Utilizada:
 - React
+-  Axios
 - Styled Components
-- Axios
 - Ant Design
 - React Select
 
