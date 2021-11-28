@@ -44,31 +44,26 @@ export default class App extends React.Component {
     const itemCarrinho = this.state.carrinho.filter((item) => {
       if (item.id === produto.id) {
         return item;
-           
       } else {
         return false;
-        
       }
     });
 
     if (itemCarrinho.length === 0) {
       produto.quantidade = 1;
-      message.success("Serviço selecionado")
+      message.success("Serviço selecionado");
       const novoCarrinho = [produto, ...this.state.carrinho];
       this.setState({ carrinho: novoCarrinho });
-      
     } else {
       const novoCarrinho = this.state.carrinho.map((item) => {
-        if (produto.id === item.id) {   
-          message.error("Produto já adicionado")  
+        if (produto.id === item.id) {
+          message.error("Produto já adicionado");
           return { ...item, quantidade: item.quantidade };
         } else {
           return item;
-        }  
-      } 
-      );
+        }
+      });
       this.setState({ carrinho: novoCarrinho });
-     
     }
   };
 
@@ -90,7 +85,7 @@ export default class App extends React.Component {
   limparCarrinho = () => {
     this.setState({ carrinho: [] });
   };
-  
+
   /************************************ RENDERIZAR TELAS ************************************/
 
   trocaPagina = () => {
@@ -103,7 +98,8 @@ export default class App extends React.Component {
           />
         );
       case "Vazia":
-        return <TelaVazia produtos={this.irParaProdutos} />;
+        return <TelaVazia produtos={this.irParaProdutos}
+        cadastro={this.irParaCadastro} />;
       case "Cadastro":
         return (
           <Cadastro
@@ -131,7 +127,7 @@ export default class App extends React.Component {
           />
         );
       default:
-        return <TelaInicial />;
+        return <TelaVazia />;
     }
   };
 
@@ -157,7 +153,6 @@ export default class App extends React.Component {
 
   /************************************ RETORNO DE TELA ************************************/
   render() {
-    
     return (
       <div>
         <GlobalStyle />

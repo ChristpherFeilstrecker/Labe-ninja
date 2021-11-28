@@ -1,18 +1,18 @@
 import React from "react";
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
-import { Form, Input, Button} from "antd";
+import { Form, Input, Button, DatePicker, Modal} from "antd";
 import Mecanico from "../../assets/imagens/mecanico.jpeg";
 import ConteinerPrincipal from "./StyledTelaCadastro";
 import  Select  from 'react-select'
 
 const opcoes = [
-  { value: 1, label: " Cartão de Débito " },
-  { value: 2, label: " Cartão de Crédito " },
-  { value: 3, label: " Pix " },
-  { value: 4, label: " Paypal " },
-  { value: 5, label: " Boleto " },
-  { value: 6, label: " Dinheiro " },
+  { value: 1, label: " Cartão de Débito" },
+  { value: 2, label: " Cartão de Crédito" },
+  { value: 3, label: " Pix" },
+  { value: 4, label: " Paypal" },
+  { value: 5, label: " Boleto" },
+  { value: 6, label: " Dinheiro" },
 ];
 
 export default class Cadastro extends React.Component {
@@ -37,7 +37,7 @@ export default class Cadastro extends React.Component {
     this.setState({pagamento : Array.isArray(event)?event.map((x)=>x.label):[] })
   };
   mudarPrazo = (event) => {
-    this.setState({ prazo: event.target.value });
+    this.setState({ prazo: event });
   };
 
   criarServico = async () => {
@@ -48,10 +48,11 @@ export default class Cadastro extends React.Component {
       paymentMethods: this.state.pagamento,
       dueDate: this.state.prazo,
     };
-    console.log(body)
     try {
       const res = await axios.post(`${BASE_URL}/jobs`, body, headers);
-      alert("Cadastro efetuado.");
+      Modal.success({
+        content: ("Cadastro efetuado.")
+      });
       this.setState({
         titulo: "",
         descricao: "",
@@ -59,9 +60,10 @@ export default class Cadastro extends React.Component {
         pagamento: [],
         prazo: "",
       });
-      console.log(res.data.jobs);
     } catch (err) {
-      console.log(err.response.data.message);
+      Modal.error({
+        content: (err.response.data.message)
+      });
     }
   };
 
@@ -70,21 +72,22 @@ export default class Cadastro extends React.Component {
       <ConteinerPrincipal>
         <img src={Mecanico} alt="Imagem de um mecânico" />
         <Form layout="vertical">
-          <Form.Item label="Título">
+          <Form.Item label={" "} >
             <Input
               placeholder={"Título"}
               value={this.state.titulo}
               onChange={this.mudarTitulo}
+              
             />
           </Form.Item>
-          <Form.Item label="Descrição">
+          <Form.Item>
             <Input
               placeholder={"Descrição"}
               value={this.state.descricao}
               onChange={this.mudarDescricao}
             />
           </Form.Item>
-          <Form.Item label="Preço">
+          <Form.Item>
             <Input
               placeholder={"Preço"}
               value={this.state.preco}
@@ -94,12 +97,12 @@ export default class Cadastro extends React.Component {
           <Select
               isMulti
               options={opcoes}
-              placeholder="Formas de Pagamento"
+              placeholder="Método de Pagamento"
               onChange={this.mudarPagamento}
               onSelect={this.mudarPagamento}
             />
-          <Form.Item label="Prazo">
-            <input type="date"
+          <Form.Item label=" ">
+            <DatePicker
               placeholder={"Prazo"}
               value={this.state.prazo}
               onChange={this.mudarPrazo}
