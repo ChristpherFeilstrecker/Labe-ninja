@@ -91,6 +91,7 @@ export default class Produtos extends React.Component {
           item.description
             .toLowerCase()
             .includes(this.state.filtro.toLowerCase())
+            
         );
       })
       .filter((item) => {
