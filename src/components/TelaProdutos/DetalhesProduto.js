@@ -11,7 +11,7 @@ export default function DetalhesServico(props) {
       <BotaoFechar onClick={() => props.paginaProdutos()}>x</BotaoFechar>
       <h2>{props.titulo.toUpperCase()}</h2>
       <h3>{props.descricao}</h3>
-      <ConteinerPagamento>Aceita: <span>{props.pagamento.join(', ')}</span></ConteinerPagamento>
+      <ConteinerPagamento> <p>Aceita:</p><span>{props.pagamento.join(', ').toLowerCase()}</span></ConteinerPagamento>
       <ConteinerPrecoData><p>Até {formatarData} por R$ <span>{props.preco},00</span></p></ConteinerPrecoData>
     </ConteinerPrincipal>
   );

@@ -34,11 +34,13 @@ const ConteinerPrincipal = styled.div`
 
 const ConteinerPagamento = styled.div`
   display: flex;
+  justify-content: center;
   font-size: 1.1rem;
   margin-bottom: 2rem;
+  text-align: center;
+  width: 80%;
 
-  span {
-    margin-left: 5px;
+  p { margin-right: 5px;
   }
 `;
 

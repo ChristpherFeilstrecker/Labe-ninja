@@ -99,7 +99,7 @@ const TextoCarrinho = styled.div`
     margin-left: 20rem;
   }
   img {
-    width: 8.4%;
+    width: 8.6%;
   }
 `;
 
