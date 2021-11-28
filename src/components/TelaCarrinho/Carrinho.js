@@ -20,7 +20,7 @@ export default class Carrinho extends React.Component {
     const itens = this.props.itensDoCarrinho.map(item =>{
       return (
         <Produto key={item.id}>
-          <ItemUnico>{item.title}</ItemUnico>
+          <ItemUnico>{item.title.toUpperCase()}</ItemUnico>
           <ItemUnico>R$ {item.price},00</ItemUnico>
           <button onClick={() => this.props.removerProduto(item.id)}>x</button>
         </Produto>
