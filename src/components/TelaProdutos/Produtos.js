@@ -3,7 +3,7 @@ import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
 import DetalhesServico from "./DetalhesProduto";
 import Filtros from "./Filtros";
-import { ConteinerPrincipal, CardServicos, ConteinerPrecoData } from "./styles/StyledServicos";
+import { ConteinerPrincipal, CardServicos, ConteinerPrecoData, ConteinerVazio, Carregando } from "./styles/StyledServicos";
 export default class Produtos extends React.Component {
   state = {
     listaServicos: [],
@@ -126,7 +126,7 @@ export default class Produtos extends React.Component {
                 VER DETALHES
               </h4>
             </div>
-            <h3>{item.title}</h3>
+            <h3>{item.title.toUpperCase()}</h3>
             <ConteinerPrecoData>
               <p>Até {formatarData} por R$ <span>{item.price},00</span></p>
             </ConteinerPrecoData>
@@ -168,7 +168,11 @@ export default class Produtos extends React.Component {
             {this.state.listaServicos.length > 0 ? (
               <ConteinerPrincipal>{servicos}</ConteinerPrincipal>
             ) : (
+              <ConteinerVazio>
+              <Carregando></Carregando>
               <h1>Carregando...</h1>
+              </ConteinerVazio>
+              
             )}
           </div>
         </div>

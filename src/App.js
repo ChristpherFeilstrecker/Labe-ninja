@@ -12,7 +12,7 @@ import { message } from "antd";
 export default class App extends React.Component {
   state = {
     carrinho: [],
-    paginaAtual: "Carrinho",
+    paginaAtual: "Cadastro",
     valorTotal: 0,
   };
 
@@ -98,7 +98,8 @@ export default class App extends React.Component {
           />
         );
       case "Vazia":
-        return <TelaVazia produtos={this.irParaProdutos} />;
+        return <TelaVazia produtos={this.irParaProdutos}
+        cadastro={this.irParaCadastro} />;
       case "Cadastro":
         return (
           <Cadastro
@@ -126,7 +127,7 @@ export default class App extends React.Component {
           />
         );
       default:
-        return <TelaInicial />;
+        return <TelaVazia />;
     }
   };
 
