@@ -10,6 +10,7 @@ import Icone5 from "../../assets/imagens/LaptopSettings.png";
 import Icone6 from "../../assets/imagens/Maintenance.png";
 import Icone7 from "../../assets/imagens/TheToast.png";
 import Icone8 from "../../assets/imagens/WomanCombingHair.png";
+import styled from "styled-components";
 
 export default class listaDeIcones extends React.Component {
     state = {

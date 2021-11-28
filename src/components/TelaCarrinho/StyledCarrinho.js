@@ -16,11 +16,11 @@ const Produto = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-<<<<<<< HEAD
-  width: 1280px;
-=======
+
+  width: 1280px;  
+
   width: 97%;
->>>>>>> 15eca65912983b97b96e6778e5f4f8ba6f864af0
+
   margin: 20px;
   background-color: #CDC8E1;
   height: 5rem;

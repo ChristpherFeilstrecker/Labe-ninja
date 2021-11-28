@@ -38,7 +38,6 @@ margin-top: 2rem;
 h1 {
     color:#7D67C5;
 }
-
 `
 
 export { ConteinerPrincipal, DataConteiner, InputConteiner, BotaoCadastro, ConteinerForm }
