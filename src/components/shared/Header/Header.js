@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from '../../../assets/imagens/logo.png'
 import Carrinho1 from '../../../assets/imagens/carrinho1.svg'
 import Carrinho2 from '../../../assets/imagens/carrinho2.svg'
-import { Menu, ConteinerCadastro } from './StyledHeader'
+import { Menu, ConteinerCadastro, ConteinerCarrinho, TextoCarrinho, IconeCarrinho } from './StyledHeader'
 
 export default function Header(props) {
     if(props.pagina === "Home" || props.pagina === "Vazia") {
@@ -35,10 +35,13 @@ export default function Header(props) {
         )
     } else if(props.pagina === "Carrinho") {
         return(
-            <Menu>
+            <ConteinerCarrinho>
+                <TextoCarrinho>
                 <img src={ Logo } alt="Logo" onClick={props.home} />
-                <img src={ Carrinho1 } alt="Ícone carrinho" onClick={props.carrinho}/> 
-            </Menu>
+                <p>A maior plataforma de contratação de serviços do Brasil</p>
+                </TextoCarrinho>
+                <IconeCarrinho src={ Carrinho1 } alt="Ícone carrinho" onClick={props.carrinho} width="30"/>
+            </ConteinerCarrinho>
         )
     }
     

@@ -1,5 +1,5 @@
 import React from "react"
-import {ConjuntoDoCarrinho, Produto, Servicos, ItemUnico, ValorTotal, DisplayProdutos, FinalizarCompra}from './StyledCarrinho';
+import {ConjuntoDoCarrinho, Produto, Servicos, ItemUnico, ValorTotal, DisplayProdutos, FinalizarCompra, CarrinhoVazio}from './StyledCarrinho';
 
 export default class Carrinho extends React.Component {
   valorTotalCarrinho = (listaServicos) => {
@@ -21,7 +21,7 @@ export default class Carrinho extends React.Component {
       return (
         <Produto key={item.id}>
           <ItemUnico>{item.title}</ItemUnico>
-          <ItemUnico>R$ {item.price}</ItemUnico>
+          <ItemUnico>R$ {item.price},00</ItemUnico>
           <button onClick={() => this.props.removerProduto(item.id)}>x</button>
         </Produto>
       )
@@ -33,10 +33,10 @@ export default class Carrinho extends React.Component {
         <Servicos>SERVIÇOS SELECIONADOS</Servicos>
         <DisplayProdutos>
         {this.props.itensDoCarrinho.length === 0 && (
-          <div>
+          <CarrinhoVazio>
             <h4>Você ainda não selecionou um serviço<span role="img" aria-label="Emoji triste">😕</span></h4>
             <button onClick={this.props.irParaProdutos}> Selecionar serviços </button>
-          </div>
+          </CarrinhoVazio>
           
         )}
         {this.props.itensDoCarrinho.length > 0 && (
@@ -45,10 +45,10 @@ export default class Carrinho extends React.Component {
           {itens}
         </div>
         <FinalizarCompra>
-        <ValorTotal>Valor Total: R$ {this.valorTotalCarrinho(this.props.itensDoCarrinho)}</ValorTotal>
-        <button onClick={this.props.limparCarrinho}>Limpar carrinho</button>
+        <ValorTotal>TOTAL: R$ {this.valorTotalCarrinho(this.props.itensDoCarrinho)}</ValorTotal>
+        <h4 onClick={this.props.limparCarrinho}>Limpar carrinho</h4>
         <button onClick={this.props.irParaProdutos}> Selecionar mais serviços </button>
-        <button onClick={this.mensagemFinalizarCarrinho}>Finalizar</button>
+        <button onClick={this.mensagemFinalizarCarrinho}>CONTRATAR SERVIÇO</button>
         </FinalizarCompra>
           </div>
         )}

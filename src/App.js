@@ -12,7 +12,7 @@ import { message } from "antd";
 export default class App extends React.Component {
   state = {
     carrinho: [],
-    paginaAtual: "Home",
+    paginaAtual: "Carrinho",
     valorTotal: 0,
   };
 
