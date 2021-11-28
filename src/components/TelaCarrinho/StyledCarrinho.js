@@ -2,36 +2,41 @@ import styled from 'styled-components'
 
 const ConjuntoDoCarrinho = styled.div`
   display: flex;
-  height: 644px;
+  min-height: 31.4rem;
   width: 1280px;
   flex-direction: column;
   align-content: center;
   justify-content: flex-start;
   align-items: center;
+  cursor: default;
 `
 const Produto = styled.div`
   border-radius: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  width: 1100px;
+  width: 97%;
   margin: 20px;
   background-color: #CDC8E1;
-  height: 40px;
+  height: 5rem;
 ` 
 const Servicos = styled.div`
   text-align: center;
   font-size: 20px;
+  background: #ffffff;
+  width: 90.8rem;
+  padding: 0.5rem;
   color: #7D4ED4;
 `
-const ItemUnico = styled.li`
+const ItemUnico = styled.p`
   display: flex;
   text-align: center;
   color: #000000;
   width: 300px;
   margin: 10px;
   font-weight: bold;
+  font-size: 1.2rem;
 `
 
 const ValorTotal = styled.p`
@@ -64,5 +69,27 @@ const FinalizarCompra = styled.div`
   flex-direction: row;
   width: 1100px;
   margin: 20px;
+
+  h4 {
+
+  }
 `
-export {ConjuntoDoCarrinho, Produto, Servicos, ItemUnico, ValorTotal, DisplayProdutos, FinalizarCompra}
+
+const CarrinhoVazio = styled.div `
+display: flex;
+flex-direction: column;
+align-items: center;
+h4 {
+  font-size: 2rem;
+  margin-top: 8rem;
+}
+button {
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 4px;
+  background: #7D4ED4;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+`
+export {ConjuntoDoCarrinho, Produto, Servicos, ItemUnico, ValorTotal, DisplayProdutos, FinalizarCompra, CarrinhoVazio}

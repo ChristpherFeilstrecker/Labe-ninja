@@ -17,7 +17,6 @@ const GlobalStyle = createGlobalStyle`
 
 const ConteinerGeral = styled.div `
 display: grid;
-gap: 1.2rem;
 grid-template-rows: 10% 89% 1&;
 
 `
