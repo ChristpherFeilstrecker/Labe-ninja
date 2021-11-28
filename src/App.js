@@ -13,7 +13,6 @@ export default class App extends React.Component {
   state = {
     carrinho: [],
     paginaAtual: "Home",
-    valorTotal: 0,
   };
 
   /************************************ LOCAL STORAGE ************************************/
@@ -57,7 +56,7 @@ export default class App extends React.Component {
     } else {
       const novoCarrinho = this.state.carrinho.map((item) => {
         if (produto.id === item.id) {
-          message.error("Produto já adicionado");
+          message.error("Serviço já está selecionado");
           return { ...item, quantidade: item.quantidade };
         } else {
           return item;
@@ -73,13 +72,6 @@ export default class App extends React.Component {
       return produto.id !== id;
     });
     this.setState({ carrinho: item });
-  };
-
-  totalItens = () => {
-    return this.state.carrinho.reduce(
-      (total, item) => total + item.quantidade,
-      0
-    );
   };
 
   limparCarrinho = () => {
@@ -98,8 +90,12 @@ export default class App extends React.Component {
           />
         );
       case "Vazia":
-        return <TelaVazia produtos={this.irParaProdutos}
-        cadastro={this.irParaCadastro} />;
+        return (
+          <TelaVazia
+            produtos={this.irParaProdutos}
+            cadastro={this.irParaCadastro}
+          />
+        );
       case "Cadastro":
         return (
           <Cadastro

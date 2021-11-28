@@ -19,9 +19,9 @@ export default class listaDeIcones extends React.Component {
     }
     render() {
         const pegaIcones = this.state.listaDeIcones
-            .map((icone) => {
+            .map((icone, index) => {
                 return (
-                    <ItemIcone>
+                    <ItemIcone key={index}>
                         <img onClick={this.props.produtos} src={icone} alt="icone 2" />
                     </ItemIcone>
                 );
