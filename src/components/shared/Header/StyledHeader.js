@@ -166,13 +166,15 @@ const ConteinerProdutos = styled.div
   }`
 ;
 
-  @media screen and (min-width : 320px) and (max-width : 480px) {
+  @media screen (min-width : 320px) and (max-width : 480px) {
   /* celulares */
   }
-  @media screen and (min-width : 481px) and (max-width : 800px) {
+
+  @media screen (min-width : 481px) and (max-width : 800px) {
   /* tablets */
   }
-  @media screen and (min-width : 1200px) {
+  
+  @media screen (min-width : 1200px) {
   /* computadores */
 }
 
