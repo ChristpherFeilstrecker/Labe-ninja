@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  ItemIcone,
-  ConteinerIcones,
-  IconesMobile
-} from "./StyledListaIcones";
+import { ItemIcone, ConteinerIcones, IconesMobile } from "./StyledListaIcones";
 import Icone1 from "../../../assets/imagens/BookAndPencil.png";
 import Icone2 from "../../../assets/imagens/Foundation.png";
 import Icone3 from "../../../assets/imagens/FryingPan.png";
@@ -34,12 +30,38 @@ export default class listaDeIcones extends React.Component {
         </ItemIcone>
       );
     });
-    return <ConteinerIcones>
-    {pegaIcones}
-        <IconesMobile><img onClick={this.props.produtos} src={Icone1} alt="Icone de trabalho"></img></IconesMobile>
-        <IconesMobile><img onClick={this.props.produtos} src={Icone2} alt="Icone de trabalho"></img></IconesMobile>
-        <IconesMobile><img onClick={this.props.produtos} src={Icone3} alt="Icone de trabalho"></img></IconesMobile>
-        <IconesMobile><img onClick={this.props.produtos} src={Icone4} alt="Icone de trabalho"></img></IconesMobile>
-    </ConteinerIcones>;
+    return (
+      <ConteinerIcones>
+        {pegaIcones}
+        <IconesMobile>
+          <img
+            onClick={this.props.produtos}
+            src={Icone1}
+            alt="Icone de trabalho"
+          ></img>
+        </IconesMobile>
+        <IconesMobile>
+          <img
+            onClick={this.props.produtos}
+            src={Icone2}
+            alt="Icone de trabalho"
+          ></img>
+        </IconesMobile>
+        <IconesMobile>
+          <img
+            onClick={this.props.produtos}
+            src={Icone3}
+            alt="Icone de trabalho"
+          ></img>
+        </IconesMobile>
+        <IconesMobile>
+          <img
+            onClick={this.props.produtos}
+            src={Icone4}
+            alt="Icone de trabalho"
+          ></img>
+        </IconesMobile>
+      </ConteinerIcones>
+    );
   }
 }

@@ -1,5 +1,6 @@
 import React from "react";
-import { Modal} from "antd";
+import { Modal } from "antd";
+import IconeLixo from "../../assets/imagens/clarity_trash-line.svg";
 import {
   ConjuntoDoCarrinho,
   Produto,
@@ -9,7 +10,7 @@ import {
   DisplayProdutos,
   FinalizarCompra,
   CarrinhoVazio,
-  ConteinerBotoes
+  ConteinerBotoes,
 } from "./StyledCarrinho";
 
 export default class Carrinho extends React.Component {
@@ -23,8 +24,8 @@ export default class Carrinho extends React.Component {
 
   mensagemFinalizarCarrinho = () => {
     Modal.success({
-      content: (`Os serviços foram contratados. 
-      Aguarde o contato do colaborador.`)
+      content: `Os serviços foram contratados. 
+      Aguarde o contato do colaborador.`,
     });
     this.props.limparCarrinho();
   };
@@ -35,7 +36,11 @@ export default class Carrinho extends React.Component {
         <Produto key={item.id}>
           <ItemUnico>{item.title.toUpperCase()}</ItemUnico>
           <ItemUnico>R$ {item.price},00</ItemUnico>
-          <button onClick={() => this.props.removerProduto(item.id)}>x</button>
+          <img
+            src={IconeLixo}
+            alt="Icone de lixo"
+            onClick={() => this.props.removerProduto(item.id)}
+          />
         </Produto>
       );
     });
@@ -67,14 +72,16 @@ export default class Carrinho extends React.Component {
                   {this.valorTotalCarrinho(this.props.itensDoCarrinho)}
                 </ValorTotal>
                 <ConteinerBotoes>
-                <button onClick={this.props.limparCarrinho}>Limpar carrinho</button>
-                <button onClick={this.props.irParaProdutos}>
-                  {" "}
-                  Selecionar mais serviços{" "}
-                </button>
-                <button onClick={this.mensagemFinalizarCarrinho}>
-                  CONTRATAR SERVIÇO
-                </button>
+                  <button onClick={this.props.limparCarrinho}>
+                    Limpar carrinho
+                  </button>
+                  <button onClick={this.props.irParaProdutos}>
+                    {" "}
+                    Selecionar mais serviços{" "}
+                  </button>
+                  <button onClick={this.mensagemFinalizarCarrinho}>
+                    CONTRATAR SERVIÇO
+                  </button>
                 </ConteinerBotoes>
               </FinalizarCompra>
             </div>

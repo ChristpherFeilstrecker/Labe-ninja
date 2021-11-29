@@ -11,32 +11,31 @@ const ConteinerPesquisa = styled(Search)`
 
   @media (max-width: 600px) {
     bottom: 5rem;
-    width: 20%
+    width: 20%;
   }
 `;
 
-const ConteinerFiltros = styled.div `
-display: flex;
-justify-content: flex-start;
-align-items: center;
-margin-top: 10px;
-padding-left: 6rem;
-background: #AFACC2;
-height: 4rem;
+const ConteinerFiltros = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  padding-left: 6rem;
+  background: #afacc2;
+  height: 4rem;
 
-h2 {
+  h2 {
     margin-right: 3rem;
     margin-top: 0.5rem;
-}
-
-label:nth-child(4) {
-    margin-left: 4rem;
-}
-
-@media (max-width: 600px) {
-    
   }
-`
+
+  label:nth-child(4) {
+    margin-left: 4rem;
+  }
+
+  @media (max-width: 600px) {
+  }
+`;
 
 const ConteinerPreco = styled.input`
   width: 14%;
@@ -58,7 +57,7 @@ const ConteinerPreco = styled.input`
   }
 `;
 
-const ConteinerOrdenacao = styled.select `
+const ConteinerOrdenacao = styled.select`
   width: 14%;
   border: 1px solid #d9d9d9;
   margin: 0 5px;
@@ -73,7 +72,11 @@ const ConteinerOrdenacao = styled.select `
     outline: none;
     box-shadow: 0px 0px 1px 1px #72caf4;
   }
+`;
 
-`
-
-export { ConteinerPesquisa, ConteinerFiltros, ConteinerPreco, ConteinerOrdenacao };
+export {
+  ConteinerPesquisa,
+  ConteinerFiltros,
+  ConteinerPreco,
+  ConteinerOrdenacao,
+};

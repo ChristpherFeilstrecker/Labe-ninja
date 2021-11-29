@@ -13,7 +13,6 @@ import {
   ConteinerProdutos,
   ConteinerCarrinho,
   TextoCarrinho,
-  IconeCarrinho,
 } from "./StyledHeader";
 
 export default function Header(props) {
@@ -26,7 +25,9 @@ export default function Header(props) {
           <h3 onClick={props.telaVazia}>Entrar</h3>
         </CabecalhoHome>
         <CabecalhoHomeMobile>
-          <summary><img src={Menu} alt="Menu" /></summary>
+          <summary>
+            <img src={Menu} alt="Menu" />
+          </summary>
           <ConteinerMobile>
             <h3 onClick={props.telaVazia}>Como Funciona</h3>
             <h3 onClick={props.telaVazia}>Entrar</h3>
@@ -58,7 +59,7 @@ export default function Header(props) {
           <img src={Logo} alt="Logo" onClick={props.home} />
           <p>A maior plataforma de contratação de serviços do Brasil</p>
         </TextoCarrinho>
-        <IconeCarrinho
+        <img
           src={Carrinho1}
           alt="Ícone carrinho"
           onClick={props.carrinho}

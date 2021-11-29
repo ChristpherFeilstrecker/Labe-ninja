@@ -60,7 +60,8 @@ export default class Produtos extends React.Component {
   abrirPaginaDetalhes = (id) => {
     this.setState({ pagina: true, idServico: id });
   };
-  fecharPaginaDetalhes = () => { this.setState({ pagina: false });
+  fecharPaginaDetalhes = () => {
+    this.setState({ pagina: false });
   };
 
   onChangeSequencia = (e) => {
@@ -91,7 +92,6 @@ export default class Produtos extends React.Component {
           item.description
             .toLowerCase()
             .includes(this.state.filtro.toLowerCase())
-            
         );
       })
       .filter((item) => {
