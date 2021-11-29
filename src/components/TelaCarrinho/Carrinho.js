@@ -1,10 +1,16 @@
-import React from "react"
-import styled from 'styled-components';
-// import Item from "./Item";
-
-const ConjuntoDoCarrinho = styled.div`
-    border: 1px solid black;
-`
+import React from "react";
+import { Modal} from "antd";
+import {
+  ConjuntoDoCarrinho,
+  Produto,
+  Servicos,
+  ItemUnico,
+  ValorTotal,
+  DisplayProdutos,
+  FinalizarCompra,
+  CarrinhoVazio,
+  ConteinerBotoes
+} from "./StyledCarrinho";
 
 export default class Carrinho extends React.Component {
   valorTotalCarrinho = (listaServicos) => {
@@ -16,44 +22,64 @@ export default class Carrinho extends React.Component {
   };
 
   mensagemFinalizarCarrinho = () => {
-    alert(`    Os serviços foram contratados. 
-    Aguarde o contato do colaborador.`)
-    this.props.limparCarrinho()
-  }
+    Modal.success({
+      content: (`Os serviços foram contratados. 
+      Aguarde o contato do colaborador.`)
+    });
+    this.props.limparCarrinho();
+  };
 
-  render(){
-    const itens = this.props.itensDoCarrinho.map(item =>{
+  render() {
+    const itens = this.props.itensDoCarrinho.map((item) => {
       return (
-        <div key={item.id}>
-          <li>{item.title}</li>
-          <li>{item.price}</li>
+        <Produto key={item.id}>
+          <ItemUnico>{item.title.toUpperCase()}</ItemUnico>
+          <ItemUnico>R$ {item.price},00</ItemUnico>
           <button onClick={() => this.props.removerProduto(item.id)}>x</button>
-        </div>
-      )
-    })
-
+        </Produto>
+      );
+    });
 
     return (
       <ConjuntoDoCarrinho>
-        <h2>Carrinho</h2>
-        {this.props.itensDoCarrinho.length === 0 && (
-          <div>
-            <h4>Você ainda não selecionou um serviço<span role="img" aria-label="Emoji triste">😕</span></h4>
-            <button onClick={this.props.irParaProdutos}> Selecionar serviços </button>
-          </div>
-          
-        )}
-        {this.props.itensDoCarrinho.length > 0 && (
-          <div>
-          <div>
-          {itens}
-        </div>
-        <p>Valor Total: R$ {this.valorTotalCarrinho(this.props.itensDoCarrinho)}</p>
-        <button onClick={this.props.limparCarrinho}>Limpar carrinho</button>
-        <button onClick={this.mensagemFinalizarCarrinho}>Finalizar</button>
-        <button onClick={this.props.irParaProdutos}> Selecionar mais serviços </button>
-          </div>
-        )}
+        <Servicos>SERVIÇOS SELECIONADOS</Servicos>
+        <DisplayProdutos>
+          {this.props.itensDoCarrinho.length === 0 && (
+            <CarrinhoVazio>
+              <h4>
+                Você ainda não selecionou um serviço
+                <span role="img" aria-label="Emoji triste">
+                  😕
+                </span>
+              </h4>
+              <button onClick={this.props.irParaProdutos}>
+                {" "}
+                Selecionar serviços{" "}
+              </button>
+            </CarrinhoVazio>
+          )}
+          {this.props.itensDoCarrinho.length > 0 && (
+            <div>
+              <div>{itens}</div>
+              <FinalizarCompra>
+                <ValorTotal>
+                  TOTAL: R${" "}
+                  {this.valorTotalCarrinho(this.props.itensDoCarrinho)}
+                </ValorTotal>
+                <ConteinerBotoes>
+                <button onClick={this.props.limparCarrinho}>Limpar carrinho</button>
+                <button onClick={this.props.irParaProdutos}>
+                  {" "}
+                  Selecionar mais serviços{" "}
+                </button>
+                <button onClick={this.mensagemFinalizarCarrinho}>
+                  CONTRATAR SERVIÇO
+                </button>
+                </ConteinerBotoes>
+              </FinalizarCompra>
+            </div>
+          )}
+        </DisplayProdutos>
       </ConjuntoDoCarrinho>
     );
   }

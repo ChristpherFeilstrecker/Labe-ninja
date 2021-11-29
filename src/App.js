@@ -1,20 +1,19 @@
 import React from "react";
-import Home from "./components/TelaInicial/Home";
-import TelaVazia from './components/shared/TelaEmConstrucao/TelaEmConstrucao'
+import TelaInicial from "./components/TelaInicial/TelaInicial";
+import TelaVazia from "./components/shared/TelaEmConstrucao/TelaEmConstrucao";
 import Carrinho from "./components/TelaCarrinho/Carrinho";
 import Produtos from "./components/TelaProdutos/Produtos";
 import Cadastro from "./components/TelaCadastro/Cadastro";
-import Header from './components/shared/Header/Header';
-import Footer from './components/shared/Footer/Footer';
+import Header from "./components/shared/Header/Header";
+import Footer from "./components/shared/Footer/Footer";
+import { GlobalStyle, ConteinerGeral } from "./StyledApp";
+import { message } from "antd";
 
-// npm i --save react-select
-// https://react-select.com/home
 
 export default class App extends React.Component {
   state = {
     carrinho: [],
     paginaAtual: "Home",
-    valorTotal: 0,
   };
 
   /************************************ LOCAL STORAGE ************************************/
@@ -52,12 +51,14 @@ export default class App extends React.Component {
 
     if (itemCarrinho.length === 0) {
       produto.quantidade = 1;
+      message.success("Serviço selecionado");
       const novoCarrinho = [produto, ...this.state.carrinho];
       this.setState({ carrinho: novoCarrinho });
     } else {
       const novoCarrinho = this.state.carrinho.map((item) => {
         if (produto.id === item.id) {
-          return { ...item, quantidade: item.quantidade};
+          message.error("Serviço já está selecionado");
+          return { ...item, quantidade: item.quantidade };
         } else {
           return item;
         }
@@ -74,13 +75,6 @@ export default class App extends React.Component {
     this.setState({ carrinho: item });
   };
 
-  totalItens = () => {
-    return this.state.carrinho.reduce(
-      (total, item) => total + item.quantidade,
-      0
-    );
-  };
-
   limparCarrinho = () => {
     this.setState({ carrinho: [] });
   };
@@ -91,16 +85,18 @@ export default class App extends React.Component {
     switch (this.state.paginaAtual) {
       case "Home":
         return (
-          <Home
-            irParaProdutos={this.irParaProdutos}
-            irParaCadastro={this.irParaCadastro}
+          <TelaInicial
+            produtos={this.irParaProdutos}
+            cadastro={this.irParaCadastro}
           />
         );
       case "Vazia":
         return (
-          <TelaVazia 
-          home={this.irParaHome}/>
-        )
+          <TelaVazia
+            produtos={this.irParaProdutos}
+            cadastro={this.irParaCadastro}
+          />
+        );
       case "Cadastro":
         return (
           <Cadastro
@@ -124,10 +120,11 @@ export default class App extends React.Component {
             irParaCarrinho={this.irParaCarrinho}
             irParaHome={this.irParaHome}
             adicionarProduto={this.adicionarProduto}
+            alteraBotao={this.alteraBotao}
           />
         );
       default:
-        return <Home />;
+        return <TelaVazia />;
     }
   };
 
@@ -136,8 +133,8 @@ export default class App extends React.Component {
   };
 
   irParaTelaVazia = () => {
-    this.setState({ paginaAtual: "Vazia"})
-  }
+    this.setState({ paginaAtual: "Vazia" });
+  };
 
   irParaProdutos = () => {
     this.setState({ paginaAtual: "Produtos" });
@@ -151,28 +148,28 @@ export default class App extends React.Component {
     this.setState({ paginaAtual: "Carrinho" });
   };
 
-
   /************************************ RETORNO DE TELA ************************************/
   render() {
     return (
       <div>
-        <div>
-          <Header 
-            pagina={this.state.paginaAtual}
-            home={this.irParaHome}
-            telaVazia={this.irParaTelaVazia}
-            produtos={this.irParaProdutos}
-            cadastro={this.irParaCadastro}
-            carrinho={this.irParaCarrinho}
-          />
-        </div>
-        <div>
-        {this.trocaPagina()}
-        </div>
-        <div>
-          <Footer />
-        </div>
+        <GlobalStyle />
+        <ConteinerGeral>
+          <div>
+            <Header
+              pagina={this.state.paginaAtual}
+              home={this.irParaHome}
+              telaVazia={this.irParaTelaVazia}
+              produtos={this.irParaProdutos}
+              cadastro={this.irParaCadastro}
+              carrinho={this.irParaCarrinho}
+            />
+          </div>
+          <div>{this.trocaPagina()}</div>
+          <div>
+            <Footer />
+          </div>
+        </ConteinerGeral>
       </div>
-    )
+    );
   }
 }
