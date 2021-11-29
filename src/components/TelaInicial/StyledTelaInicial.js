@@ -8,8 +8,8 @@ const ConteinerPrincipal = styled.div`
   min-height: 30rem;
 
   @media (max-width: 600px) {
-      min-height: 0;
-    }
+    min-height: 0;
+  }
 `;
 
 const ConteinerTexto = styled.div`
@@ -65,15 +65,15 @@ const ConteinerTexto = styled.div`
 
     @media (max-width: 600px) {
       display: flex;
-    flex-direction: column;
-    left: 2rem;
-    margin-top: 1rem;
-  }
+      flex-direction: column;
+      left: 2rem;
+      margin-top: 1rem;
+    }
   }
 
   @media (max-width: 600px) {
     flex-direction: column;
-    align-items:flex-start;
+    align-items: flex-start;
   }
 `;
 

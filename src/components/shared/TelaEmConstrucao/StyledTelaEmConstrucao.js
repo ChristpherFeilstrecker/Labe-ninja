@@ -9,14 +9,14 @@ const CardMainConstrucao = styled.div`
   justify-items: center;
   img {
     border-radius: 10px;
-    width: 80%
+    width: 80%;
   }
-  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  /* celulares */
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    /* celulares */
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   img {
@@ -25,11 +25,11 @@ const CardMainConstrucao = styled.div`
     margin-left: auto;
     margin-right: auto;
   }
-  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
-  /* tablets */
+  @media screen and (min-device-width: 481px) and (max-device-width: 800px) {
+    /* tablets */
   }
-  @media screen and (min-device-width : 1200px) {
-  /* computadores */
+  @media screen and (min-device-width: 1200px) {
+    /* computadores */
   }
 `;
 
@@ -58,19 +58,19 @@ const TextoMain = styled.div`
       color: #000000;
     }
   }
-  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  /* celulares */
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    /* celulares */
     border: 1px solid black;
     width: 400px;
   }
-  button{
+  button {
     margin: 10px;
   }
-  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
-  /* tablets */
+  @media screen and (min-device-width: 481px) and (max-device-width: 800px) {
+    /* tablets */
   }
-  @media screen and (min-device-width : 1200px) {
-  /* computadores */
+  @media screen and (min-device-width: 1200px) {
+    /* computadores */
   }
 `;
 

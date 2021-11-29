@@ -1,20 +1,12 @@
 import React from "react";
 import Pintor from "../../assets/imagens/pintor.jpg";
 import ListaDeIcones from "../shared/ListaIcones/ListaDeIcones";
-
-import {
-  ConteinerPrincipal,
-
-  ConteinerTexto,
-} from "./StyledTelaInicial";
-
+import { ConteinerPrincipal, ConteinerTexto } from "./StyledTelaInicial";
 export default class Home extends React.Component {
-
   render() {
-   
     return (
       <ConteinerPrincipal>
-          <ListaDeIcones produtos={this.props.produtos}/>
+        <ListaDeIcones produtos={this.props.produtos} />
         <ConteinerTexto>
           <div>
             <p>

@@ -55,12 +55,12 @@ const ConteinerPrecoData = styled.div`
 `;
 
 const ConteinerVazio = styled.div`
- margin: 7.8rem 0 7.8rem 36.8rem;
+  margin: 7.8rem 0 7.8rem 36.8rem;
 `;
 
-const Carregando = styled.div `
- border: 8px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #CCA3FF;
+const Carregando = styled.div`
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #cca3ff;
   border-radius: 50%;
   width: 10rem;
   height: 10rem;
@@ -71,6 +71,12 @@ const Carregando = styled.div `
       transform: rotate(360deg);
     }
   }
-`
+`;
 
-export { ConteinerPrincipal, CardServicos, ConteinerPrecoData, ConteinerVazio, Carregando };
+export {
+  ConteinerPrincipal,
+  CardServicos,
+  ConteinerPrecoData,
+  ConteinerVazio,
+  Carregando,
+};

@@ -12,7 +12,6 @@ const ConteinerIcones = styled.div`
     justify-content: flex-start;
     width: 320px;
     position: absolute;
-    
   }
 `;
 

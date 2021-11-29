@@ -9,7 +9,6 @@ import Footer from "./components/shared/Footer/Footer";
 import { GlobalStyle, ConteinerGeral } from "./StyledApp";
 import { message } from "antd";
 
-
 export default class App extends React.Component {
   state = {
     carrinho: [],

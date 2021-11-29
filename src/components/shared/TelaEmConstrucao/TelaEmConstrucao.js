@@ -22,10 +22,7 @@ export default function TelaEmConstrucao(props) {
             <button onClick={props.cadastro}>Quero ser um Ninja</button>
           </div>
         </TextoMain>
-        <img
-          src={Cachorro}
-          alt="Cachorro com um computador"
-        />
+        <img src={Cachorro} alt="Cachorro com um computador" />
       </CardMainConstrucao>
     </div>
   );
