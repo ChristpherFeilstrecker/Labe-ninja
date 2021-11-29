@@ -9,6 +9,7 @@ import {
   DisplayProdutos,
   FinalizarCompra,
   CarrinhoVazio,
+  ConteinerBotoes
 } from "./StyledCarrinho";
 
 export default class Carrinho extends React.Component {
@@ -65,7 +66,8 @@ export default class Carrinho extends React.Component {
                   TOTAL: R${" "}
                   {this.valorTotalCarrinho(this.props.itensDoCarrinho)}
                 </ValorTotal>
-                <h4 onClick={this.props.limparCarrinho}>Limpar carrinho</h4>
+                <ConteinerBotoes>
+                <button onClick={this.props.limparCarrinho}>Limpar carrinho</button>
                 <button onClick={this.props.irParaProdutos}>
                   {" "}
                   Selecionar mais serviços{" "}
@@ -73,6 +75,7 @@ export default class Carrinho extends React.Component {
                 <button onClick={this.mensagemFinalizarCarrinho}>
                   CONTRATAR SERVIÇO
                 </button>
+                </ConteinerBotoes>
               </FinalizarCompra>
             </div>
           )}

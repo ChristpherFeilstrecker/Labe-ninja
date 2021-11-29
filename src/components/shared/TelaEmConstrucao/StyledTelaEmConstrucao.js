@@ -11,7 +11,28 @@ const CardMainConstrucao = styled.div`
     border-radius: 10px;
     width: 80%
   }
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+  img {
+    border-radius: 10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  /* tablets */
+  }
+  @media screen and (min-device-width : 1200px) {
+  /* computadores */
+  }
 `;
+
 const TextoMain = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,6 +57,20 @@ const TextoMain = styled.div`
       background: transparent;
       color: #000000;
     }
+  }
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+    border: 1px solid black;
+    width: 400px;
+  }
+  button{
+    margin: 10px;
+  }
+  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  /* tablets */
+  }
+  @media screen and (min-device-width : 1200px) {
+  /* computadores */
   }
 `;
 

@@ -16,7 +16,11 @@ const Produto = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+
+  width: 1280px;  
+
   width: 97%;
+
   margin: 20px;
   background-color: #CDC8E1;
   height: 5rem;
@@ -93,4 +97,44 @@ button {
   font-size: 1.2rem;
 }
 `
-export {ConjuntoDoCarrinho, Produto, Servicos, ItemUnico, ValorTotal, DisplayProdutos, FinalizarCompra, CarrinhoVazio}
+const ConteinerBotoes = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0.7rem 0;
+
+  p {
+    font-size: 2.4rem;
+    width: 58%;
+    line-height: 2.4rem;
+    position: relative;
+    left: 8rem;
+  }
+
+  img {
+    width: 20rem;
+    height: 26rem;
+    border-radius: 10px;
+    position: relative;
+    right: 8rem;
+  }
+
+  button {
+    border: 1px solid #7d4ed4;
+    background: #7d4ed4;
+    color: #ffffff;
+    border-radius: 6px;
+    cursor: default;
+    position: relative;
+    left: 8rem;
+    font-size: 1.2rem;
+    padding: 0.5rem 2rem;
+    text-align: center;
+    margin-right: 2rem;
+
+    :hover {
+      background: transparent;
+      color: #000000;
+    }
+  }
+`
+export {ConjuntoDoCarrinho, Produto, Servicos, ItemUnico, ValorTotal, DisplayProdutos, FinalizarCompra, CarrinhoVazio,ConteinerBotoes}
