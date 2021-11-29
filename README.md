@@ -15,6 +15,9 @@ Somos um site especializado na conexão de prestadores de serviço com pessoas q
 - Ant Design
 - React Select
 
+### O que não funciona:
+- Responsividade
+
 ## Em nossa página você poderá:
 - Se cadastrar para ser um colaborador
 - Contratar serviços das pessoas contratados
