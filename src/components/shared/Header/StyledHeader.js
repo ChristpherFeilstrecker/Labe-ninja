@@ -152,8 +152,8 @@ const LogoTextoCadastro = styled.div`
 
 `;
 
-const ConteinerProdutos = styled.div`
-  display: flex;
+const ConteinerProdutos = styled.div
+  `display: flex;
   justify-content: space-between;
 
   img:first-child {
@@ -163,17 +163,16 @@ const ConteinerProdutos = styled.div`
   img:last-child {
     width: 2%;
     margin-right: 2rem;
-  }
+  }`
+;
 
-`;
-
-  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  @media Screen and (min-device-width : 320px) and (max-device-width : 480px) {
   /* celulares */
   }
-  @media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  @media Screen and (min-device-width : 481px) and (max-device-width : 800px) {
   /* tablets */
   }
-  @media screen and (min-device-width : 1200px) {
+  @media Screen and (min-device-width : 1200px) {
   /* computadores */
 }
 
