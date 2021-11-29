@@ -73,7 +73,7 @@ export default class Cadastro extends React.Component {
         <img src={Mecanico} alt="Imagem de um mecânico" />
         <ConteinerForm>
           <h1>CADASTRE O SEU SERVIÇO</h1>
-          <Form layout="vertical" name="complex-form" onFinish={this.criarServico} labelCol={{ span: 24 }} wrapperCol={{ span: 40 }}>
+          <Form layout="vertical" name="complex-form" labelCol={{ span: 24 }} wrapperCol={{ span: 40 }}>
           <Form.Item name='titulo'  rules={[{ required: true, message: 'Título é obrigatório'}]}>
             <InputConteiner
               placeholder={"Título do seu anúncio"}

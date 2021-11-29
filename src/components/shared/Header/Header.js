@@ -2,9 +2,12 @@ import React from "react";
 import Logo from "../../../assets/imagens/logo.png";
 import Carrinho1 from "../../../assets/imagens/carrinho1.svg";
 import Carrinho2 from "../../../assets/imagens/carrinho2.svg";
+import Menu from "../../../assets/imagens/clarity_menu-line.svg";
 import {
   ConteinerHome,
   CabecalhoHome,
+  CabecalhoHomeMobile,
+  ConteinerMobile,
   ConteinerCadastro,
   LogoTextoCadastro,
   ConteinerProdutos,
@@ -22,6 +25,13 @@ export default function Header(props) {
           <h3 onClick={props.telaVazia}>Como Funciona</h3>
           <h3 onClick={props.telaVazia}>Entrar</h3>
         </CabecalhoHome>
+        <CabecalhoHomeMobile>
+          <summary><img src={Menu} alt="Menu" /></summary>
+          <ConteinerMobile>
+            <h3 onClick={props.telaVazia}>Como Funciona</h3>
+            <h3 onClick={props.telaVazia}>Entrar</h3>
+          </ConteinerMobile>
+        </CabecalhoHomeMobile>
       </ConteinerHome>
     );
   } else if (props.pagina === "Produtos") {

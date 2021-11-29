@@ -1,6 +1,6 @@
 import React from "react";
 import Cachorro from "../../../assets/imagens/cachorrinho.jpeg";
-import ListaDeIcones from "../ListaDeIcones";
+import ListaDeIcones from "../ListaIcones/ListaDeIcones";
 import { CardMainConstrucao, TextoMain } from "./StyledTelaEmConstrucao";
 
 export default function TelaEmConstrucao(props) {

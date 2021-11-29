@@ -9,6 +9,12 @@ const Rodape = styled.div `
     p{
         margin-top: 0.6rem;
     }
+
+    @media (max-width: 600px) {
+    flex-direction: column;
+      width: 40rem;
+      height: 3.4rem;
+    }
 `
 
 const IconeRodape = styled.div `
@@ -24,6 +30,11 @@ const IconeRodape = styled.div `
 
     i {
         padding: 0 1rem;
+    }
+
+    @media (max-width: 600px) {
+      margin-right: 0;
+      justify-content: center
     }
 `
 

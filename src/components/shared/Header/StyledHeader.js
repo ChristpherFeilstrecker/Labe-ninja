@@ -8,6 +8,14 @@ const ConteinerHome = styled.div`
   img {
     width: 8%;
   }
+
+  @media (max-width: 600px) {
+    justify-content: center;
+    width: 320px;
+    img {
+      width: 40%;
+    }
+  }
 `;
 
 const CabecalhoHome = styled.div`
@@ -28,6 +36,47 @@ const CabecalhoHome = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+
+const CabecalhoHomeMobile = styled.details`
+  display: none;
+
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s;
+
+    summary {
+      list-style: none;
+      width: 4rem;
+      position: relative;
+      top: -1rem;
+      left: 4rem;
+    }
+
+    h3 {
+      font-size: 0.8rem;
+      position: absolute;
+      top: 3rem;
+      left: 13.6rem;
+    }
+
+    h3:last-child {
+      position: absolute;
+      top: 4.6rem;
+    }
+  }
+`;
+
+const ConteinerMobile = styled.div`
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const ConteinerCadastro = styled.div`
@@ -35,6 +84,10 @@ const ConteinerCadastro = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.8rem;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 
   button {
     margin-right: 1rem;
@@ -51,6 +104,10 @@ const ConteinerCadastro = styled.div`
       opacity: 0.8;
       cursor: pointer;
     }
+
+    @media (max-width: 600px) {
+      display: none;
+    }
   }
 `;
 
@@ -59,15 +116,21 @@ const LogoTextoCadastro = styled.div`
   align-items: center;
   img {
     width: 12.8%;
+    @media (max-width: 600px) {
+      width: 15%;
+    }
   }
 
   p {
     color: #7d4ed4;
     font-size: 1.2rem;
+    @media (max-width: 600px) {
+      display: none;
+    }
   }
 `;
 
-const ConteinerProdutos = styled.div `
+const ConteinerProdutos = styled.div`
   display: flex;
   justify-content: space-between;
 
@@ -79,7 +142,7 @@ const ConteinerProdutos = styled.div `
     width: 2%;
     margin-right: 2rem;
   }
-`
+`;
 
 const ConteinerCarrinho = styled.div`
   width: 96%;
@@ -106,6 +169,8 @@ const TextoCarrinho = styled.div`
 export {
   ConteinerHome,
   CabecalhoHome,
+  CabecalhoHomeMobile,
+  ConteinerMobile,
   ConteinerCadastro,
   LogoTextoCadastro,
   ConteinerProdutos,

@@ -11,6 +11,13 @@ const DetalhesConteiner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+  }
 `;
 
 const BotaoFechar = styled.h2`
@@ -19,6 +26,7 @@ const BotaoFechar = styled.h2`
   width: 120%;
   cursor: default;
 `;
+
 const ConteinerPrincipal = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,7 +48,8 @@ const ConteinerPagamento = styled.div`
   text-align: center;
   width: 80%;
 
-  p { margin-right: 5px;
+  p {
+    margin-right: 5px;
   }
 `;
 

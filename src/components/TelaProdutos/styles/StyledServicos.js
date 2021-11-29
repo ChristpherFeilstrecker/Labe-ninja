@@ -7,6 +7,11 @@ const ConteinerPrincipal = styled.div`
   gap: 2rem;
   margin: 2rem 4rem 1rem;
   min-height: 25.8rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+    margin: 2rem 0rem 1rem;
+  }
 `;
 
 const CardServicos = styled.div`
