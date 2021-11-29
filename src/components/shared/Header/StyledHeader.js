@@ -163,7 +163,7 @@ const ConteinerProdutos = styled.div
   img:last-child {
     width: 2%;
     margin-right: 2rem;
-  }`
+  }
 ;
 
   @media Screen and (min-width : 320px) and (max-width : 480px) {
@@ -177,15 +177,15 @@ const ConteinerProdutos = styled.div
   @media Screen and (min-width : 1200px) {
   /* computadores */
 }
-
-
+`
+;
 
 
 const ConteinerCarrinho = styled.div`
   width: 96%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;`
+  justify-content: space-evenly;
 
   @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
   /* celulares */
@@ -195,7 +195,7 @@ const ConteinerCarrinho = styled.div`
   }
   @media screen and (min-device-width : 1200px) {
   /* computadores */
-}
+}`
 
 ;
 
