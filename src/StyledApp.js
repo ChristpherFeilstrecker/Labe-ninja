@@ -10,14 +10,21 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    ${'' /* background: #f5f4fc  */}
-    background: #FFF8CC
+    background: #FFF8CC;
+
+    @media (max-width: 600px) {
+    width: 100%;
+    overflow-x: hidden
+  }
   }
 `;
 
 const ConteinerGeral = styled.div `
 display: grid;
 grid-template-rows: 10% 89% 1&;
+@media (max-width: 600px) {
+  grid-template-rows: repeat()(3, 1fr)
+    }
 
 `
 

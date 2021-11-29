@@ -1,6 +1,6 @@
 import React from "react";
 import Pintor from "../../assets/imagens/pintor.jpg";
-import ListaDeIcones from "../shared/ListaDeIcones";
+import ListaDeIcones from "../shared/ListaIcones/ListaDeIcones";
 
 import {
   ConteinerPrincipal,

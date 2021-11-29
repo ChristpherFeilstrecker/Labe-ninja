@@ -1,15 +1,13 @@
 import React from "react";
 import Cachorro from "../../../assets/imagens/cachorrinho.jpeg";
-import ListaDeIcones from "../ListaDeIcones";
-import {
-  CarMainConstrucao,
-  TextoMain,
-} from "./StyledTelaEmConstrucao";
+import ListaDeIcones from "../ListaIcones/ListaDeIcones";
+import { CardMainConstrucao, TextoMain } from "./StyledTelaEmConstrucao";
+
 export default function TelaEmConstrucao(props) {
   return (
     <div>
-      <ListaDeIcones produtos={props.produtos}/>
-      <CarMainConstrucao>
+      <ListaDeIcones produtos={props.produtos} />
+      <CardMainConstrucao>
         <TextoMain>
           <p>
             Olá! Esta página ainda não está funcionando{" "}
@@ -27,10 +25,8 @@ export default function TelaEmConstrucao(props) {
         <img
           src={Cachorro}
           alt="Cachorro com um computador"
-          width="400"
-          height="300"
         />
-      </CarMainConstrucao>
+      </CardMainConstrucao>
     </div>
   );
 }

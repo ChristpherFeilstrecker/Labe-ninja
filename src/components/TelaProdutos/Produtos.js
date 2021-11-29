@@ -3,7 +3,13 @@ import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
 import DetalhesServico from "./DetalhesProduto";
 import Filtros from "./Filtros";
-import { ConteinerPrincipal, CardServicos, ConteinerPrecoData, ConteinerVazio, Carregando } from "./styles/StyledServicos";
+import {
+  ConteinerPrincipal,
+  CardServicos,
+  ConteinerPrecoData,
+  ConteinerVazio,
+  Carregando,
+} from "./styles/StyledServicos";
 export default class Produtos extends React.Component {
   state = {
     listaServicos: [],
@@ -29,7 +35,6 @@ export default class Produtos extends React.Component {
     try {
       const res = await axios.get(`${BASE_URL}/jobs`, headers);
       this.setState({ listaServicos: res.data.jobs });
-      console.log(res.data.jobs);
     } catch (err) {
       alert("Erro!");
     }
@@ -47,7 +52,6 @@ export default class Produtos extends React.Component {
         preco: res.data.price,
         idServico: id,
       });
-      console.log(this.props.id);
     } catch (err) {
       alert("Erro!");
     }
@@ -56,10 +60,7 @@ export default class Produtos extends React.Component {
   abrirPaginaDetalhes = (id) => {
     this.setState({ pagina: true, idServico: id });
   };
-  fecharPaginaDetalhes = () => {
-    this.setState({
-      pagina: false,
-    });
+  fecharPaginaDetalhes = () => { this.setState({ pagina: false });
   };
 
   onChangeSequencia = (e) => {
@@ -122,13 +123,19 @@ export default class Produtos extends React.Component {
         return (
           <CardServicos key={item.id}>
             <div onClick={() => this.pegarTrabalhosId(item.id)}>
-              <h4 onClick={() => {this.abrirPaginaDetalhes(item.id)}}>
+              <h4
+                onClick={() => {
+                  this.abrirPaginaDetalhes(item.id);
+                }}
+              >
                 VER DETALHES
               </h4>
             </div>
             <h3>{item.title.toUpperCase()}</h3>
             <ConteinerPrecoData>
-              <p>Até {formatarData} por R$ <span>{item.price},00</span></p>
+              <p>
+                Até {formatarData} por R$ <span>{item.price},00</span>
+              </p>
             </ConteinerPrecoData>
             <button onClick={() => this.props.adicionarProduto(item)}>
               CONTRATAR
@@ -169,10 +176,9 @@ export default class Produtos extends React.Component {
               <ConteinerPrincipal>{servicos}</ConteinerPrincipal>
             ) : (
               <ConteinerVazio>
-              <Carregando></Carregando>
-              <h1>Carregando...</h1>
+                <Carregando></Carregando>
+                <h1>Carregando...</h1>
               </ConteinerVazio>
-              
             )}
           </div>
         </div>

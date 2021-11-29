@@ -8,6 +8,11 @@ const ConteinerPesquisa = styled(Search)`
   top: 1.6rem;
   right: 26rem;
   border-radius: 2rem;
+
+  @media (max-width: 600px) {
+    bottom: 5rem;
+    width: 20%
+  }
 `;
 
 const ConteinerFiltros = styled.div `
@@ -27,6 +32,10 @@ h2 {
 label:nth-child(4) {
     margin-left: 4rem;
 }
+
+@media (max-width: 600px) {
+    
+  }
 `
 
 const ConteinerPreco = styled.input`
