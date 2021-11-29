@@ -166,24 +166,24 @@ const ConteinerProdutos = styled.div
   }`
 ;
 
-  @media Screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  @media screen and (min-width : 320px) and (max-width : 480px) {
   /* celulares */
   }
-  @media Screen and (min-device-width : 481px) and (max-device-width : 800px) {
+  @media screen and (min-width : 481px) and (max-width : 800px) {
   /* tablets */
   }
-  @media Screen and (min-device-width : 1200px) {
+  @media screen and (min-width : 1200px) {
   /* computadores */
 }
 
-`
+
 
 
 const ConteinerCarrinho = styled.div`
   width: 96%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-evenly;`
 
   @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
   /* celulares */
@@ -195,7 +195,7 @@ const ConteinerCarrinho = styled.div`
   /* computadores */
 }
 
-`;
+;
 
 const IconeCarrinho = styled.img``;
 
