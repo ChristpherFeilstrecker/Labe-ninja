@@ -33,6 +33,11 @@ const Servicos = styled.div`
   width: 90.7rem;
   padding: 0.5rem;
   color: #7D4ED4;
+  @media (max-width: 600px) {
+    flex-direction: column;
+      width: 40rem;
+      height: 3.4rem;
+    }
 `
 const ItemUnico = styled.p`
   display: flex;
