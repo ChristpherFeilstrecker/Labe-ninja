@@ -7,6 +7,8 @@ import Cadastro from "./components/TelaCadastro/Cadastro";
 import Header from './components/shared/Header/Header';
 import Footer from './components/shared/Footer/Footer';
 
+// npm i --save react-select
+// https://react-select.com/home
 
 export default class App extends React.Component {
   state = {

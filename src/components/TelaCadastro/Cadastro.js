@@ -1,10 +1,19 @@
 import React from "react"
 import { BASE_URL, headers } from "../../constantes/credenciais";
 import axios from "axios";
-import {
-  Form,
-  Select,
-} from 'antd';
+import Select from 'react-select';
+// import {
+//   Form,
+//   Select,
+// } from 'antd';
+
+const opcoes = [
+  { value:1, label:"Cartão de Crédito"},
+  { value:2, label:"Cartão de Débito"},
+  { value:3, label:"Pix"},
+  { value:4, label:"Paypal"},
+  { value:5, label:"Boleto"}
+]
 
 export default class Cadastro extends React.Component {
   state = {
@@ -25,9 +34,7 @@ export default class Cadastro extends React.Component {
     this.setState({ preco: event.target.value })
   }
   mudarPagamento = (event) => {
-    const formaDePagamento = [...this.state.pagamento]
-     formaDePagamento.push(event.target.value)
-    this.setState({pagamento: formaDePagamento})
+    this.setState({pagamento : Array.isArray(event)?event.map((x)=>x.label):[] })
   }
   mudarPrazo = (event) => {
     this.setState({ prazo: event.target.value })
@@ -71,14 +78,14 @@ export default class Cadastro extends React.Component {
             onChange={this.mudarPreco}
           />
 
-          <Form.Item label="Formas de Pagamento">
-          <Select mode="multiple">
-            <Select.Option value="Cartão">Cartão</Select.Option>
-            <Select.Option value="dinheiro">Dinheiro</Select.Option>
-            <Select.Option value="PayPal">PayPal</Select.Option>
-            <Select.Option value="Pix">Pix</Select.Option>
-          </Select>
-          </Form.Item>
+          <Select
+                isMulti
+                options={opcoes}
+                placeholder="Formas de Pagamento.."
+            
+              onChange={this.mudarPagamento}
+             onSelect={this.mudarPagamento}
+          />
 
           <input 
             type="date"
