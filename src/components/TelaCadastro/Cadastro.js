@@ -15,6 +15,7 @@ const opcoes = [
   { value: 6, label: " Dinheiro" },
 ];
 
+
 export default class Cadastro extends React.Component {
   state = {
     titulo: "",
@@ -106,7 +107,6 @@ export default class Cadastro extends React.Component {
               placeholder="Método de Pagamento"
               onChange={this.mudarPagamento}
               onSelect={this.mudarPagamento}
-
             />
           </Form.Item>
           <Form.Item name="prazo"
